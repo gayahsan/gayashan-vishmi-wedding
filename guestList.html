@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#f5f0e8" />
     <meta name="description" content="Find your table for Gayashan and Vishmi's wedding." />
     <title>Gayashan &amp; Vishmi — Guest List</title>
@@ -34,9 +34,14 @@
         box-sizing: border-box;
       }
 
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
       body {
         margin: 0;
         min-height: 100vh;
+        overflow-x: hidden;
         color: var(--ink);
         font-family: var(--sans);
         background:
@@ -439,73 +444,142 @@
         border-color: var(--line);
       }
 
+      @media (hover: none) {
+        .table-card:hover {
+          box-shadow: none;
+          transform: none;
+        }
+
+        .button:hover {
+          background: var(--sage);
+          transform: none;
+        }
+      }
+
       @media (max-width: 760px) {
         .shell {
-          width: min(100% - 1.25rem, 1180px);
+          width: 100%;
+          padding: calc(0.7rem + env(safe-area-inset-top)) 1rem calc(2.4rem + env(safe-area-inset-bottom));
         }
 
         .topbar-meta {
           display: none;
         }
 
+        .topbar .button {
+          min-height: 36px;
+          padding: 0.42rem 0.8rem;
+          font-size: 0.7rem;
+        }
+
         .hero {
           grid-template-columns: 1fr;
-          gap: 1.5rem;
-          padding: 4rem 0 2.5rem;
+          gap: 0.95rem;
+          padding: 2.1rem 0 1.5rem;
         }
 
         h1 {
-          max-width: 12ch;
-          font-size: clamp(3.15rem, 14vw, 5rem);
+          max-width: 8ch;
+          font-size: clamp(2.55rem, 12vw, 3.35rem);
+        }
+
+        .hero-copy {
+          font-size: 0.92rem;
+          line-height: 1.6;
         }
 
         .finder {
+          position: sticky;
+          top: 0.55rem;
+          z-index: 5;
           grid-template-columns: 1fr;
+          padding: 0.75rem;
+          border-radius: 16px;
+          background: rgba(247, 243, 236, 0.94);
+        }
+
+        .search input {
+          font-size: 16px;
         }
 
         .summary {
           justify-content: space-around;
         }
 
+        .section-head {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.25rem;
+          margin: 2.1rem 0 0.85rem;
+        }
+
         .table-grid {
           grid-template-columns: 1fr;
+        }
+
+        .table-card {
+          grid-template-columns: 1fr;
+          min-height: 0;
+        }
+
+        .table-card__intro {
+          display: flex;
+          align-items: baseline;
+          gap: 0.85rem;
+          padding: 0.95rem 1.05rem;
+        }
+
+        .table-number {
+          font-size: 1.7rem;
+        }
+
+        .table-caption {
+          display: none;
+        }
+
+        .table-type {
+          margin-top: 0;
+          font-size: 1.02rem;
+        }
+
+        .guest-list {
+          padding: 0.2rem 1rem 0.55rem;
+        }
+
+        .guest-list li {
+          min-height: 38px;
+          padding: 0.45rem 0;
+        }
+
+        .footer {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .footer-actions {
+          width: 100%;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .footer-actions .button {
+          width: 100%;
         }
       }
 
       @media (max-width: 440px) {
-        .table-card {
-          grid-template-columns: 94px 1fr;
-        }
-
-        .table-card__intro {
-          padding: 1.25rem 0.75rem;
-        }
-
-        .table-number {
-          font-size: 2.5rem;
-        }
-
-        .guest-list {
-          padding-inline: 0.85rem;
-        }
-
         .guest-note {
-          display: none;
+          max-width: 42%;
         }
 
         th,
         td {
-          padding: 0.85rem 0.75rem;
+          padding: 0.8rem 0.75rem;
         }
 
         th:last-child,
         td:last-child {
           display: none;
-        }
-
-        .footer {
-          align-items: flex-start;
-          flex-direction: column;
         }
       }
 
