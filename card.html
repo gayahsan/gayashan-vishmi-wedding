@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f0e8" />
+    <meta name="description" content="The wedding invitation of Gayashan and Vishmi." />
+    <title>Gayashan &amp; Vishmi — Wedding Invitation</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --ivory: #f7f3ec;
+        --paper: #fffdf9;
+        --ink: #292b27;
+        --muted: #76766e;
+        --sage: #66745f;
+        --sage-dark: #4d5948;
+        --blush: #d8b7ad;
+        --gold: #ae8b57;
+        --line: rgba(41, 43, 39, 0.12);
+        --serif: "Playfair Display", Georgia, serif;
+        --sans: "DM Sans", system-ui, sans-serif;
+        --script: "Great Vibes", cursive;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        font-family: var(--sans);
+        background: var(--ivory);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .page {
+        position: relative;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        padding: clamp(1rem, 3vw, 2.5rem);
+        isolation: isolate;
+      }
+
+      .page::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background:
+          radial-gradient(circle at 8% 4%, rgba(216, 183, 173, 0.28), transparent 25rem),
+          radial-gradient(circle at 94% 40%, rgba(102, 116, 95, 0.16), transparent 28rem),
+          var(--ivory);
+      }
+
+      .page::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background:
+          radial-gradient(circle at 12% 10%, rgba(216, 183, 173, 0.34), transparent 25%),
+          radial-gradient(circle at 86% 88%, rgba(102, 116, 95, 0.22), transparent 27%);
+      }
+
+      .invitation {
+        width: min(1180px, 100%);
+        min-height: min(760px, calc(100vh - clamp(2rem, 6vw, 5rem)));
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+        background: rgba(255, 253, 249, 0.86);
+        border: 1px solid rgba(255, 255, 255, 0.76);
+        border-radius: 30px;
+        box-shadow: 0 32px 100px rgba(52, 48, 40, 0.16);
+        backdrop-filter: blur(16px);
+        overflow: hidden;
+      }
+
+      .intro {
+        position: relative;
+        padding: clamp(2.25rem, 6vw, 5.5rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .intro::after {
+        content: "";
+        position: absolute;
+        top: 12%;
+        right: 0;
+        bottom: 12%;
+        width: 1px;
+        background: linear-gradient(transparent, var(--line) 14%, var(--line) 86%, transparent);
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin: 0 0 1.5rem;
+        color: var(--sage-dark);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 34px;
+        height: 1px;
+        background: var(--gold);
+      }
+
+      .names {
+        margin: 0;
+        font-family: var(--script);
+        font-size: clamp(4.6rem, 8vw, 7.4rem);
+        font-weight: 400;
+        line-height: 0.72;
+        letter-spacing: -0.025em;
+      }
+
+      .names span {
+        display: block;
+      }
+
+      .names .ampersand {
+        width: fit-content;
+        margin: 0.35em 0 0.2em 36%;
+        color: var(--gold);
+        font-family: var(--serif);
+        font-size: 0.24em;
+        font-style: italic;
+        letter-spacing: 0.1em;
+      }
+
+      .headline {
+        max-width: 15ch;
+        margin: 2.1rem 0 1rem;
+        font-family: var(--serif);
+        font-size: clamp(2rem, 4vw, 3.45rem);
+        font-weight: 400;
+        line-height: 1.08;
+        letter-spacing: -0.035em;
+      }
+
+      .lede {
+        max-width: 48ch;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.98rem;
+        font-weight: 300;
+        line-height: 1.75;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        margin-top: 2rem;
+      }
+
+      .button {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        padding: 0.72rem 1.15rem;
+        border: 1px solid var(--sage);
+        border-radius: 999px;
+        color: #fff;
+        background: var(--sage);
+        font: 500 0.82rem/1 var(--sans);
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      }
+
+      .button:hover {
+        background: var(--sage-dark);
+        box-shadow: 0 10px 24px rgba(77, 89, 72, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .button.secondary {
+        border-color: var(--line);
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.58);
+      }
+
+      .button.secondary:hover {
+        background: #fff;
+      }
+
+      .details {
+        position: relative;
+        padding: clamp(2rem, 4.5vw, 4rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: linear-gradient(150deg, rgba(102, 116, 95, 0.09), rgba(216, 183, 173, 0.12));
+      }
+
+      .date-mark {
+        width: min(280px, 100%);
+        margin: 0 auto 2.2rem;
+        padding: 1.2rem 0 1.35rem;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        text-align: center;
+        border-block: 1px solid var(--line);
+      }
+
+      .date-mark .side {
+        color: var(--muted);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .date-mark .day {
+        padding: 0 1.1rem;
+        color: var(--sage-dark);
+        font-family: var(--serif);
+        font-size: 3.8rem;
+        font-weight: 400;
+        line-height: 0.95;
+      }
+
+      .event-list {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .event-row {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        gap: 1rem;
+        align-items: start;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .event-label {
+        padding-top: 0.2rem;
+        color: var(--sage-dark);
+        font-size: 0.64rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .event-value {
+        font-family: var(--serif);
+        font-size: 1.02rem;
+        line-height: 1.55;
+      }
+
+      .event-value small {
+        display: block;
+        color: var(--muted);
+        font: 300 0.82rem/1.55 var(--sans);
+      }
+
+      .countdown {
+        margin-top: 1.55rem;
+        text-align: center;
+      }
+
+      .countdown-title {
+        margin: 0 0 0.75rem;
+        color: var(--muted);
+        font-size: 0.58rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .count-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.55rem;
+        justify-items: center;
+      }
+
+      .count-item {
+        display: grid;
+        justify-items: center;
+        gap: 0.4rem;
+      }
+
+      .count-ring {
+        width: 54px;
+        height: 54px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(102, 116, 95, 0.28);
+        border-radius: 50%;
+        background: rgba(255, 253, 249, 0.42);
+      }
+
+      .count-value {
+        color: var(--sage-dark);
+        font-family: var(--serif);
+        font-size: 1.05rem;
+        font-variant-numeric: tabular-nums;
+        line-height: 1;
+      }
+
+      .count-label {
+        color: var(--muted);
+        font-size: 0.5rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .rsvp {
+        margin: 1.5rem 0 0;
+        color: var(--muted);
+        font-size: 0.75rem;
+        line-height: 1.7;
+        text-align: center;
+      }
+
+      .rsvp a {
+        color: var(--ink);
+        text-decoration-color: rgba(41, 43, 39, 0.28);
+        text-underline-offset: 3px;
+      }
+
+      .music {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 5;
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.75);
+        border-radius: 50%;
+        color: var(--ink);
+        background: rgba(255, 253, 249, 0.78);
+        box-shadow: 0 8px 30px rgba(41, 43, 39, 0.13);
+        backdrop-filter: blur(12px);
+        cursor: pointer;
+      }
+
+      .music svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .music[aria-pressed="false"] .sound-on,
+      .music[aria-pressed="true"] .sound-off {
+        display: none;
+      }
+
+      @media (max-width: 820px) {
+        .page {
+          display: block;
+          padding: 0;
+        }
+
+        .invitation {
+          min-height: 100vh;
+          grid-template-columns: 1fr;
+          border: 0;
+          border-radius: 0;
+        }
+
+        .intro {
+          min-height: 72vh;
+          padding: 4rem clamp(1.4rem, 7vw, 3.5rem);
+        }
+
+        .intro::after {
+          top: auto;
+          right: 10%;
+          bottom: 0;
+          left: 10%;
+          width: auto;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, var(--line), transparent);
+        }
+
+        .details {
+          padding: 3.5rem clamp(1.4rem, 7vw, 3.5rem) 5rem;
+        }
+      }
+
+      @media (max-width: 460px) {
+        .names {
+          font-size: clamp(4rem, 21vw, 5.7rem);
+        }
+
+        .headline {
+          font-size: 2.15rem;
+        }
+
+        .event-row {
+          grid-template-columns: 68px 1fr;
+        }
+
+        .count-ring {
+          width: 46px;
+          height: 46px;
+        }
+
+        .count-value {
+          font-size: 0.92rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <audio
+      id="bgm"
+      preload="metadata"
+      loop
+      playsinline
+      muted
+      src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/be/Clair_de_lune_%28Claude_Debussy%29_Suite_bergamasque.ogg/Clair_de_lune_%28Claude_Debussy%29_Suite_bergamasque.ogg.mp3"
+    ></audio>
+
+    <main class="page">
+      <article class="invitation">
+        <section class="intro" aria-labelledby="invitation-title">
+          <p class="eyebrow">Together with their families</p>
+          <h1 class="names" id="invitation-title">
+            <span>Gayashan</span>
+            <span class="ampersand">and</span>
+            <span>Vishmi</span>
+          </h1>
+          <h2 class="headline">Invite you to celebrate their wedding</h2>
+          <p class="lede">
+            With joyful hearts, we request the pleasure of your company as we begin
+            our forever together.
+          </p>
+
+          <div class="actions">
+            <a
+              class="button"
+              href="https://maps.app.goo.gl/a8YGA2KU18Kjvm8M9"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View location
+            </a>
+            <button class="button secondary" id="icsBtn" type="button">Save the date</button>
+            <a class="button secondary" href="guestList.html">Find your table</a>
+          </div>
+        </section>
+
+        <section class="details" aria-label="Wedding details">
+          <div class="date-mark" aria-label="Thursday, August 5, 2027">
+            <span class="side">Thursday</span>
+            <span class="day">05</span>
+            <span class="side">August<br />2027</span>
+          </div>
+
+          <div class="event-list">
+            <div class="event-row">
+              <div class="event-label">When</div>
+              <div class="event-value">
+                Thursday, August 05, 2027
+                <small>Reception begins at 9:30 in the evening</small>
+              </div>
+            </div>
+            <div class="event-row">
+              <div class="event-label">Where</div>
+              <div class="event-value">
+                Senuri Grand Castello
+                <small>Negombo Road, Divulapitiya, Sri Lanka</small>
+              </div>
+            </div>
+            <div class="event-row">
+              <div class="event-label">Dress</div>
+              <div class="event-value">
+                Formal attire
+                <small>Soft neutrals and garden tones are warmly welcomed</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="countdown">
+            <p class="countdown-title">Until we meet</p>
+            <div class="count-grid" id="countdown" aria-live="polite">
+              <div class="count-item">
+                <div class="count-ring"><span class="count-value" data-part="days">00</span></div>
+                <span class="count-label">Days</span>
+              </div>
+              <div class="count-item">
+                <div class="count-ring"><span class="count-value" data-part="hours">00</span></div>
+                <span class="count-label">Hours</span>
+              </div>
+              <div class="count-item">
+                <div class="count-ring"><span class="count-value" data-part="minutes">00</span></div>
+                <span class="count-label">Minutes</span>
+              </div>
+              <div class="count-item">
+                <div class="count-ring"><span class="count-value" data-part="seconds">00</span></div>
+                <span class="count-label">Seconds</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="rsvp">
+            Kindly RSVP to
+            <a href="tel:+94763283337">076 328 3337</a>
+            ·
+            <a href="mailto:gayashankavinga@gamil.com">gayashankavinga@gamil.com</a>
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <button class="music" id="muteBtn" type="button" aria-label="Play music" aria-pressed="false">
+      <svg class="sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+        <path d="M9 18V5l10-2v13" stroke-linecap="round" stroke-linejoin="round"></path>
+        <circle cx="6" cy="18" r="3"></circle>
+        <circle cx="16" cy="16" r="3"></circle>
+      </svg>
+      <svg class="sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+        <path d="M9 18V5l10-2v13" stroke-linecap="round" stroke-linejoin="round"></path>
+        <circle cx="6" cy="18" r="3"></circle>
+        <path d="m3 3 18 18" stroke-linecap="round"></path>
+      </svg>
+    </button>
+
+    <script>
+      var EVENT_TITLE = "Gayashan & Vishmi — Wedding";
+      var EVENT_LOCATION = "Senuri Grand Castello, Negombo Road, Divulapitiya";
+      var EVENT_URL = "https://maps.app.goo.gl/a8YGA2KU18Kjvm8M9";
+      var EVENT_START_UTC_MS = Date.UTC(2027, 7, 5, 16, 0, 0);
+      var EVENT_END_UTC_MS = Date.UTC(2027, 7, 5, 19, 0, 0);
+
+      function pad2(value) {
+        return String(value).padStart(2, "0");
+      }
+
+      function setPart(part, value) {
+        var el = document.querySelector('[data-part="' + part + '"]');
+        if (el) el.textContent = value;
+      }
+
+      function tickCountdown() {
+        var diff = EVENT_START_UTC_MS - Date.now();
+        var total = Math.max(0, Math.floor(diff / 1000));
+
+        setPart("days", String(Math.floor(total / 86400)));
+        setPart("hours", pad2(Math.floor((total % 86400) / 3600)));
+        setPart("minutes", pad2(Math.floor((total % 3600) / 60)));
+        setPart("seconds", pad2(total % 60));
+      }
+
+      function formatIcsUtc(milliseconds) {
+        var date = new Date(milliseconds);
+        return (
+          date.getUTCFullYear() +
+          pad2(date.getUTCMonth() + 1) +
+          pad2(date.getUTCDate()) +
+          "T" +
+          pad2(date.getUTCHours()) +
+          pad2(date.getUTCMinutes()) +
+          pad2(date.getUTCSeconds()) +
+          "Z"
+        );
+      }
+
+      function escapeIcs(text) {
+        return String(text)
+          .replace(/\\/g, "\\\\")
+          .replace(/\n/g, "\\n")
+          .replace(/,/g, "\\,")
+          .replace(/;/g, "\\;");
+      }
+
+      function downloadCalendar() {
+        var lines = [
+          "BEGIN:VCALENDAR",
+          "VERSION:2.0",
+          "PRODID:-//Wedding Invitation//EN",
+          "CALSCALE:GREGORIAN",
+          "BEGIN:VEVENT",
+          "UID:" + EVENT_START_UTC_MS + "@wedding-invite",
+          "DTSTAMP:" + formatIcsUtc(Date.now()),
+          "DTSTART:" + formatIcsUtc(EVENT_START_UTC_MS),
+          "DTEND:" + formatIcsUtc(EVENT_END_UTC_MS),
+          "SUMMARY:" + escapeIcs(EVENT_TITLE),
+          "LOCATION:" + escapeIcs(EVENT_LOCATION),
+          "URL:" + escapeIcs(EVENT_URL),
+          "DESCRIPTION:" + escapeIcs("Wedding celebration. Map: " + EVENT_URL),
+          "END:VEVENT",
+          "END:VCALENDAR",
+        ];
+        var blob = new Blob([lines.join("\r\n")], { type: "text/calendar;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = "Gayashan-Vishmi-Wedding.ics";
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+        setTimeout(function () {
+          URL.revokeObjectURL(url);
+        }, 1000);
+      }
+
+      function setupMusic() {
+        var audio = document.getElementById("bgm");
+        var button = document.getElementById("muteBtn");
+        audio.volume = 0.22;
+
+        button.addEventListener("click", function () {
+          var shouldPlay = button.getAttribute("aria-pressed") !== "true";
+          button.setAttribute("aria-pressed", String(shouldPlay));
+          button.setAttribute("aria-label", shouldPlay ? "Pause music" : "Play music");
+
+          if (shouldPlay) {
+            audio.muted = false;
+            audio.play().catch(function () {
+              button.setAttribute("aria-pressed", "false");
+              button.setAttribute("aria-label", "Play music");
+            });
+          } else {
+            audio.pause();
+          }
+        });
+      }
+
+      document.getElementById("icsBtn").addEventListener("click", downloadCalendar);
+      tickCountdown();
+      setInterval(tickCountdown, 1000);
+      setupMusic();
+    </script>
+  </body>
+</html>

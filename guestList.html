@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f0e8" />
+    <meta name="description" content="Find your table for Gayashan and Vishmi's wedding." />
+    <title>Gayashan &amp; Vishmi — Guest List</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --ivory: #f7f3ec;
+        --paper: #fffdf9;
+        --ink: #292b27;
+        --muted: #76766e;
+        --sage: #66745f;
+        --sage-dark: #4d5948;
+        --blush: #d8b7ad;
+        --gold: #ae8b57;
+        --line: rgba(41, 43, 39, 0.12);
+        --serif: "Playfair Display", Georgia, serif;
+        --sans: "DM Sans", system-ui, sans-serif;
+        --script: "Great Vibes", cursive;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        font-family: var(--sans);
+        background:
+          radial-gradient(circle at 8% 4%, rgba(216, 183, 173, 0.28), transparent 25rem),
+          radial-gradient(circle at 94% 40%, rgba(102, 116, 95, 0.16), transparent 28rem),
+          var(--ivory);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      button,
+      input,
+      a {
+        font: inherit;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 2rem));
+        margin: 0 auto;
+        padding: 1.1rem 0 5rem;
+      }
+
+      .topbar {
+        min-height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .monogram {
+        color: var(--ink);
+        font-family: var(--script);
+        font-size: 1.7rem;
+        line-height: 1;
+        text-decoration: none;
+      }
+
+      .topbar-meta {
+        color: var(--muted);
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr minmax(300px, 0.7fr);
+        gap: clamp(2rem, 7vw, 6rem);
+        align-items: end;
+        padding: clamp(3.5rem, 8vw, 7rem) 0 clamp(2.7rem, 5vw, 4.5rem);
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin: 0 0 1.3rem;
+        color: var(--sage-dark);
+        font-size: 0.67rem;
+        font-weight: 600;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 34px;
+        height: 1px;
+        background: var(--gold);
+      }
+
+      h1 {
+        max-width: 10ch;
+        margin: 0;
+        font-family: var(--serif);
+        font-size: clamp(3.1rem, 7vw, 6.2rem);
+        font-weight: 400;
+        line-height: 0.98;
+        letter-spacing: -0.05em;
+      }
+
+      .hero-copy {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.98rem;
+        font-weight: 300;
+        line-height: 1.75;
+      }
+
+      .hero-copy strong {
+        display: block;
+        margin-bottom: 0.55rem;
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: 1.15rem;
+        font-weight: 400;
+      }
+
+      .finder {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 1rem;
+        align-items: center;
+        padding: 1rem;
+        background: rgba(255, 253, 249, 0.82);
+        border: 1px solid rgba(255, 255, 255, 0.86);
+        border-radius: 20px;
+        box-shadow: 0 18px 55px rgba(52, 48, 40, 0.1);
+        backdrop-filter: blur(14px);
+      }
+
+      .search {
+        position: relative;
+      }
+
+      .search svg {
+        position: absolute;
+        top: 50%;
+        left: 1.05rem;
+        width: 18px;
+        height: 18px;
+        color: var(--sage);
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      .search input {
+        width: 100%;
+        min-height: 52px;
+        padding: 0.75rem 1rem 0.75rem 3rem;
+        color: var(--ink);
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        outline: none;
+        transition: border-color 180ms ease, box-shadow 180ms ease;
+      }
+
+      .search input::placeholder {
+        color: #99988f;
+      }
+
+      .search input:focus {
+        border-color: rgba(102, 116, 95, 0.55);
+        box-shadow: 0 0 0 4px rgba(102, 116, 95, 0.1);
+      }
+
+      .summary {
+        display: flex;
+        gap: 0.55rem;
+      }
+
+      .stat {
+        min-width: 72px;
+        padding: 0.4rem 0.7rem;
+        text-align: center;
+      }
+
+      .stat strong {
+        display: block;
+        font-family: var(--serif);
+        font-size: 1.45rem;
+        font-weight: 400;
+        line-height: 1.05;
+      }
+
+      .stat span {
+        color: var(--muted);
+        font-size: 0.55rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 1rem;
+        margin: 3.5rem 0 1.25rem;
+      }
+
+      .section-head h2 {
+        margin: 0;
+        font-family: var(--serif);
+        font-size: clamp(1.7rem, 3vw, 2.3rem);
+        font-weight: 400;
+        letter-spacing: -0.025em;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .table-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .table-card {
+        display: grid;
+        grid-template-columns: 124px 1fr;
+        min-height: 260px;
+        background: rgba(255, 253, 249, 0.74);
+        border: 1px solid rgba(41, 43, 39, 0.09);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      .table-card:hover {
+        box-shadow: 0 18px 46px rgba(52, 48, 40, 0.09);
+        transform: translateY(-3px);
+      }
+
+      .table-card__intro {
+        padding: 1.4rem 1rem;
+        color: #fff;
+        background:
+          linear-gradient(155deg, rgba(255, 255, 255, 0.1), transparent 55%),
+          var(--sage);
+      }
+
+      .table-number {
+        display: block;
+        font-family: var(--serif);
+        font-size: 3rem;
+        line-height: 1;
+      }
+
+      .table-caption {
+        display: block;
+        margin-top: 0.45rem;
+        font-size: 0.58rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        opacity: 0.76;
+      }
+
+      .table-type {
+        margin-top: 2.5rem;
+        font-family: var(--serif);
+        font-size: 0.93rem;
+        line-height: 1.3;
+      }
+
+      .guest-list {
+        list-style: none;
+        margin: 0;
+        padding: 0.65rem 1.15rem;
+      }
+
+      .guest-list li {
+        min-height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.55rem 0;
+        border-bottom: 1px solid rgba(41, 43, 39, 0.08);
+      }
+
+      .guest-list li:last-child {
+        border-bottom: 0;
+      }
+
+      .guest-name {
+        font-family: var(--serif);
+        font-size: 0.92rem;
+      }
+
+      .guest-note {
+        color: var(--muted);
+        font-size: 0.67rem;
+        text-align: right;
+      }
+
+      .directory {
+        overflow: hidden;
+        background: rgba(255, 253, 249, 0.72);
+        border: 1px solid rgba(41, 43, 39, 0.09);
+        border-radius: 20px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 1rem 1.25rem;
+        text-align: left;
+        border-bottom: 1px solid rgba(41, 43, 39, 0.08);
+      }
+
+      th {
+        color: var(--muted);
+        font-size: 0.58rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      td {
+        font-size: 0.82rem;
+      }
+
+      tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
+      tbody tr:hover {
+        background: rgba(102, 116, 95, 0.045);
+      }
+
+      .name-cell {
+        font-family: var(--serif);
+        font-size: 0.95rem;
+      }
+
+      .number-pill {
+        width: 30px;
+        height: 30px;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        background: var(--sage);
+        border-radius: 50%;
+        font-family: var(--serif);
+      }
+
+      .empty {
+        display: none;
+        margin-top: 1rem;
+        padding: 4rem 1.5rem;
+        color: var(--muted);
+        background: rgba(255, 253, 249, 0.72);
+        border: 1px solid rgba(41, 43, 39, 0.09);
+        border-radius: 20px;
+        font-family: var(--serif);
+        font-size: 1.2rem;
+        font-style: italic;
+        text-align: center;
+      }
+
+      .empty.visible {
+        display: block;
+      }
+
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 2.4rem;
+        padding-top: 1.2rem;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.7rem;
+      }
+
+      .footer-actions {
+        display: flex;
+        gap: 0.55rem;
+      }
+
+      .button {
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.65rem 1rem;
+        color: #fff;
+        background: var(--sage);
+        border: 1px solid var(--sage);
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 180ms ease, transform 180ms ease;
+      }
+
+      .button:hover {
+        background: var(--sage-dark);
+        transform: translateY(-1px);
+      }
+
+      .button.secondary {
+        color: var(--ink);
+        background: transparent;
+        border-color: var(--line);
+      }
+
+      @media (max-width: 760px) {
+        .shell {
+          width: min(100% - 1.25rem, 1180px);
+        }
+
+        .topbar-meta {
+          display: none;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+          padding: 4rem 0 2.5rem;
+        }
+
+        h1 {
+          max-width: 12ch;
+          font-size: clamp(3.15rem, 14vw, 5rem);
+        }
+
+        .finder {
+          grid-template-columns: 1fr;
+        }
+
+        .summary {
+          justify-content: space-around;
+        }
+
+        .table-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 440px) {
+        .table-card {
+          grid-template-columns: 94px 1fr;
+        }
+
+        .table-card__intro {
+          padding: 1.25rem 0.75rem;
+        }
+
+        .table-number {
+          font-size: 2.5rem;
+        }
+
+        .guest-list {
+          padding-inline: 0.85rem;
+        }
+
+        .guest-note {
+          display: none;
+        }
+
+        th,
+        td {
+          padding: 0.85rem 0.75rem;
+        }
+
+        th:last-child,
+        td:last-child {
+          display: none;
+        }
+
+        .footer {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .shell {
+          width: 100%;
+          padding: 0;
+        }
+
+        .topbar,
+        .hero-copy,
+        .finder,
+        .footer {
+          display: none !important;
+        }
+
+        .hero {
+          display: block;
+          padding: 0 0 1.5rem;
+        }
+
+        h1 {
+          max-width: none;
+          font-size: 2.5rem;
+        }
+
+        .section-head {
+          margin-top: 1.5rem;
+        }
+
+        .table-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .table-card {
+          min-height: 0;
+          break-inside: avoid;
+          box-shadow: none;
+        }
+
+        .table-card:hover {
+          transform: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <nav class="topbar" aria-label="Wedding navigation">
+        <a class="monogram" href="card.html">G &amp; V</a>
+        <span class="topbar-meta">05 August 2027 · Negombo Road, Divulapitiya</span>
+        <a class="button secondary" href="card.html">View invitation</a>
+      </nav>
+
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Reception seating</p>
+          <h1>Find your place.</h1>
+        </div>
+        <p class="hero-copy">
+          <strong>Welcome to our celebration at Senuri Grand Castello.</strong>
+          Search for your name below to find your table, or explore the complete seating
+          plan prepared for our evening together on Negombo Road, Divulapitiya.
+        </p>
+      </header>
+
+      <section class="finder" aria-label="Guest search">
+        <div class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-3.4-3.4" stroke-linecap="round"></path>
+          </svg>
+          <label for="guestSearch" hidden>Search for a guest</label>
+          <input
+            id="guestSearch"
+            type="search"
+            placeholder="Search by guest name…"
+            autocomplete="off"
+          />
+        </div>
+        <div class="summary" id="summary" aria-live="polite"></div>
+      </section>
+
+      <div class="empty" id="emptyState">We couldn’t find that name. Please try another spelling.</div>
+
+      <section id="tablesSection">
+        <div class="section-head">
+          <h2>Seating by table</h2>
+          <p id="resultLabel">Fifteen thoughtfully arranged tables</p>
+        </div>
+        <div class="table-grid" id="tableCards"></div>
+      </section>
+
+      <section id="directorySection">
+        <div class="section-head">
+          <h2>Guest directory</h2>
+          <p>Alphabetical order</p>
+        </div>
+        <div class="directory">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Guest</th>
+                <th scope="col">Table</th>
+                <th scope="col">Party</th>
+              </tr>
+            </thead>
+            <tbody id="guestTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>Gayashan &amp; Vishmi · Thursday, August 05, 2027</span>
+        <div class="footer-actions">
+          <button class="button secondary" id="printBtn" type="button">Print seating plan</button>
+          <a class="button" href="card.html">Back to invitation</a>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      var TABLE_META = {
+        1: { title: "Wedding party", note: "Couple & bridal party" },
+        2: { title: "Bride’s family", note: "Immediate family" },
+        3: { title: "Bride’s family", note: "Relatives" },
+        4: { title: "Groom’s family", note: "Immediate family" },
+        5: { title: "Groom’s family", note: "Relatives" },
+        6: { title: "Friends", note: "School & university" },
+        7: { title: "Friends", note: "Close friends" },
+        8: { title: "Colleagues", note: "Work family" },
+        9: { title: "Family friends", note: "Longtime family friends" },
+        10: { title: "Bride’s friends", note: "Friends of the bride" },
+        11: { title: "Groom’s friends", note: "Friends of the groom" },
+        12: { title: "Neighbours", note: "Friends from home" },
+        13: { title: "Colleagues", note: "Professional friends" },
+        14: { title: "Family friends", note: "Friends of both families" },
+        15: { title: "Friends", note: "Our shared circle" },
+      };
+
+      var GUESTS = [
+        { name: "Gayashan Perera", table: 1, note: "Groom" },
+        { name: "Vishmi Fernando", table: 1, note: "Bride" },
+        { name: "Kasun Perera", table: 1, note: "Best man" },
+        { name: "Nadeesha Silva", table: 1, note: "Maid of honour" },
+        { name: "Tharindu Jayawardena", table: 1, note: "Groomsman" },
+        { name: "Ishara Wijesinghe", table: 1, note: "Bridesmaid" },
+        { name: "Chamari Fernando", table: 2, note: "Mother of the bride" },
+        { name: "Rohan Fernando", table: 2, note: "Father of the bride" },
+        { name: "Sanduni Fernando", table: 2, note: "Sister of the bride" },
+        { name: "Dilshan Fernando", table: 2, note: "Brother-in-law" },
+        { name: "Amaya Fernando", table: 2, note: "Niece" },
+        { name: "Nalini Gunawardena", table: 3, note: "Aunt of the bride" },
+        { name: "Sunil Gunawardena", table: 3, note: "Uncle of the bride" },
+        { name: "Harini Jayasuriya", table: 3, note: "Cousin" },
+        { name: "Pradeep Jayasuriya", table: 3, note: "Cousin" },
+        { name: "Malsha Weerasinghe", table: 3, note: "Cousin" },
+        { name: "Anoma Perera", table: 4, note: "Mother of the groom" },
+        { name: "Mahinda Perera", table: 4, note: "Father of the groom" },
+        { name: "Nuwan Perera", table: 4, note: "Brother of the groom" },
+        { name: "Sachini Perera", table: 4, note: "Sister-in-law" },
+        { name: "Kavindu Perera", table: 4, note: "Nephew" },
+        { name: "Lakshman Bandara", table: 5, note: "Uncle of the groom" },
+        { name: "Deepika Bandara", table: 5, note: "Aunt of the groom" },
+        { name: "Yasara Rajapaksa", table: 5, note: "Cousin" },
+        { name: "Chathura Rajapaksa", table: 5, note: "Cousin" },
+        { name: "Isuru Dissanayake", table: 5, note: "Cousin" },
+        { name: "Ayesha Karunaratne", table: 6, note: "University friend" },
+        { name: "Dinuka Abeysekera", table: 6, note: "University friend" },
+        { name: "Menaka Rathnayake", table: 6, note: "School friend" },
+        { name: "Shehan Alwis", table: 6, note: "School friend" },
+        { name: "Piumi Senanayake", table: 6, note: "University friend" },
+        { name: "Ravindu de Silva", table: 7, note: "Close friend" },
+        { name: "Hashini Amarasinghe", table: 7, note: "Close friend" },
+        { name: "Janith Wickramasinghe", table: 7, note: "Close friend" },
+        { name: "Nimasha Hettiarachchi", table: 7, note: "Close friend" },
+        { name: "Sanjaya Pathirana", table: 7, note: "Close friend" },
+        { name: "Priyanka Mendis", table: 8, note: "Colleague" },
+        { name: "Asela Gunasekara", table: 8, note: "Colleague" },
+        { name: "Thilini Ranasinghe", table: 8, note: "Colleague" },
+        { name: "Buddhika Jayakody", table: 8, note: "Colleague" },
+        { name: "Oshadi Samarakoon", table: 8, note: "Colleague" },
+      ];
+
+      var DUMMY_FIRST_NAMES = [
+        "Akila", "Amali", "Anjana", "Bhanuka", "Binuri", "Chamara", "Chathuni",
+        "Dhanushka", "Dinithi", "Eranga", "Fathima", "Gayan", "Hansani", "Harsha",
+        "Imesha", "Janaka", "Kaushalya", "Kusal", "Lakmini", "Lahiru", "Madhavi",
+        "Manoj", "Nadeeka", "Nethmi", "Niroshan", "Omesh", "Pabasara", "Pavithra",
+        "Rashmi", "Rukshan", "Sachith", "Samadhi", "Sasanka", "Shalini", "Supun",
+        "Tharushi", "Udara", "Umayanga", "Varuni", "Vihanga", "Waruni", "Yasith",
+        "Yohani", "Zahra", "Amandi", "Charith", "Dulani"
+      ];
+
+      var DUMMY_LAST_NAMES = [
+        "Abeywardena", "Ariyasinghe", "Balasuriya", "De Alwis", "Ekanayake",
+        "Fonseka", "Gamage", "Herath", "Ilangasinghe", "Jayasinghe", "Kodagoda",
+        "Liyanage", "Munasinghe", "Nanayakkara", "Obeysekere", "Peiris",
+        "Ratnayake", "Samarasinghe", "Tennakoon", "Wickramaratne"
+      ];
+
+      var generatedNameIndex = 0;
+      Object.keys(TABLE_META).forEach(function (tableKey) {
+        var tableNumber = Number(tableKey);
+        var seated = GUESTS.filter(function (guest) {
+          return guest.table === tableNumber;
+        }).length;
+
+        while (seated < 9) {
+          var firstName = DUMMY_FIRST_NAMES[generatedNameIndex % DUMMY_FIRST_NAMES.length];
+          var lastName =
+            DUMMY_LAST_NAMES[
+              Math.floor(generatedNameIndex / DUMMY_FIRST_NAMES.length) %
+                DUMMY_LAST_NAMES.length
+            ];
+          GUESTS.push({
+            name: firstName + " " + lastName,
+            table: tableNumber,
+            note: TABLE_META[tableNumber].note,
+          });
+          generatedNameIndex += 1;
+          seated += 1;
+        }
+      });
+
+      var searchInput = document.getElementById("guestSearch");
+      var tableCards = document.getElementById("tableCards");
+      var guestTableBody = document.getElementById("guestTableBody");
+      var summary = document.getElementById("summary");
+      var emptyState = document.getElementById("emptyState");
+      var tablesSection = document.getElementById("tablesSection");
+      var directorySection = document.getElementById("directorySection");
+      var resultLabel = document.getElementById("resultLabel");
+
+      function groupByTable(guests) {
+        return guests.reduce(function (groups, guest) {
+          groups[guest.table] = groups[guest.table] || [];
+          groups[guest.table].push(guest);
+          return groups;
+        }, {});
+      }
+
+      function render(query) {
+        var filtered = GUESTS.filter(function (guest) {
+          return (guest.name + " " + guest.note + " table " + guest.table)
+            .toLowerCase()
+            .includes(query);
+        });
+        var grouped = groupByTable(filtered);
+        var tableNumbers = Object.keys(grouped).map(Number).sort(function (a, b) {
+          return a - b;
+        });
+        var hasResults = filtered.length > 0;
+
+        summary.innerHTML =
+          '<div class="stat"><strong>' + filtered.length + '</strong><span>Showing</span></div>' +
+          '<div class="stat"><strong>' + tableNumbers.length + '</strong><span>Tables</span></div>';
+
+        emptyState.classList.toggle("visible", !hasResults);
+        tablesSection.hidden = !hasResults;
+        directorySection.hidden = !hasResults;
+        resultLabel.textContent = query
+          ? filtered.length + (filtered.length === 1 ? " matching guest" : " matching guests")
+          : "Fifteen thoughtfully arranged tables";
+
+        if (!hasResults) return;
+
+        tableCards.innerHTML = tableNumbers
+          .map(function (tableNumber) {
+            var meta = TABLE_META[tableNumber];
+            var people = grouped[tableNumber];
+            var guests = people
+              .map(function (guest) {
+                return (
+                  '<li><span class="guest-name">' +
+                  guest.name +
+                  '</span><span class="guest-note">' +
+                  guest.note +
+                  "</span></li>"
+                );
+              })
+              .join("");
+
+            return (
+              '<article class="table-card">' +
+              '<div class="table-card__intro">' +
+              '<span class="table-number">' + padTable(tableNumber) + "</span>" +
+              '<span class="table-caption">Table</span>' +
+              '<div class="table-type">' + meta.title + "</div>" +
+              "</div>" +
+              '<ul class="guest-list">' + guests + "</ul>" +
+              "</article>"
+            );
+          })
+          .join("");
+
+        guestTableBody.innerHTML = filtered
+          .slice()
+          .sort(function (a, b) {
+            return a.name.localeCompare(b.name);
+          })
+          .map(function (guest) {
+            return (
+              "<tr>" +
+              '<td class="name-cell">' + guest.name + "</td>" +
+              '<td><span class="number-pill">' + guest.table + "</span></td>" +
+              "<td>" + guest.note + "</td>" +
+              "</tr>"
+            );
+          })
+          .join("");
+      }
+
+      function padTable(number) {
+        return String(number).padStart(2, "0");
+      }
+
+      searchInput.addEventListener("input", function () {
+        render(searchInput.value.trim().toLowerCase());
+      });
+
+      document.getElementById("printBtn").addEventListener("click", function () {
+        window.print();
+      });
+
+      render("");
+    </script>
+  </body>
+</html>
