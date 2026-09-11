@@ -444,6 +444,35 @@
         border-color: var(--line);
       }
 
+      .music {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 10;
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+        padding: 0;
+        color: var(--ink);
+        background: rgba(255, 253, 249, 0.86);
+        border: 1px solid rgba(255, 255, 255, 0.82);
+        border-radius: 50%;
+        box-shadow: 0 8px 30px rgba(41, 43, 39, 0.13);
+        backdrop-filter: blur(12px);
+        cursor: pointer;
+      }
+
+      .music svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .music[aria-pressed="false"] .sound-on,
+      .music[aria-pressed="true"] .sound-off {
+        display: none;
+      }
+
       @media (hover: none) {
         .table-card:hover {
           box-shadow: none;
@@ -565,6 +594,11 @@
         .footer-actions .button {
           width: 100%;
         }
+
+        .music {
+          right: max(0.85rem, env(safe-area-inset-right));
+          bottom: max(0.85rem, env(safe-area-inset-bottom));
+        }
       }
 
       @media (max-width: 440px) {
@@ -596,7 +630,8 @@
         .topbar,
         .hero-copy,
         .finder,
-        .footer {
+        .footer,
+        .music {
           display: none !important;
         }
 
@@ -639,6 +674,16 @@
     </style>
   </head>
   <body>
+    <audio
+      id="bgm"
+      preload="metadata"
+      autoplay
+      loop
+      playsinline
+      muted
+      src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/be/Clair_de_lune_%28Claude_Debussy%29_Suite_bergamasque.ogg/Clair_de_lune_%28Claude_Debussy%29_Suite_bergamasque.ogg.mp3"
+    ></audio>
+
     <main class="shell">
       <nav class="topbar" aria-label="Wedding navigation">
         <a class="monogram" href="card.html">G &amp; V</a>
@@ -712,6 +757,19 @@
         </div>
       </footer>
     </main>
+
+    <button class="music" id="muteBtn" type="button" aria-label="Play music" aria-pressed="false">
+      <svg class="sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+        <path d="M9 18V5l10-2v13" stroke-linecap="round" stroke-linejoin="round"></path>
+        <circle cx="6" cy="18" r="3"></circle>
+        <circle cx="16" cy="16" r="3"></circle>
+      </svg>
+      <svg class="sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+        <path d="M9 18V5l10-2v13" stroke-linecap="round" stroke-linejoin="round"></path>
+        <circle cx="6" cy="18" r="3"></circle>
+        <path d="m3 3 18 18" stroke-linecap="round"></path>
+      </svg>
+    </button>
 
     <script>
       var TABLE_META = {
@@ -917,7 +975,34 @@
         window.print();
       });
 
+      function setupMusic() {
+        var audio = document.getElementById("bgm");
+        var button = document.getElementById("muteBtn");
+        audio.volume = 0.22;
+
+        button.addEventListener("click", function () {
+          var shouldPlay = button.getAttribute("aria-pressed") !== "true";
+          button.setAttribute("aria-pressed", String(shouldPlay));
+          button.setAttribute("aria-label", shouldPlay ? "Pause music" : "Play music");
+
+          if (shouldPlay) {
+            audio.muted = false;
+            audio.play().catch(function () {
+              button.setAttribute("aria-pressed", "false");
+              button.setAttribute("aria-label", "Play music");
+            });
+          } else {
+            audio.pause();
+          }
+        });
+
+        audio.play().catch(function () {
+          /* Muted autoplay can still be disabled by browser preferences. */
+        });
+      }
+
       render("");
+      setupMusic();
     </script>
   </body>
 </html>

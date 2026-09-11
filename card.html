@@ -536,6 +536,7 @@
     <audio
       id="bgm"
       preload="metadata"
+      autoplay
       loop
       playsinline
       muted
@@ -745,6 +746,10 @@
           } else {
             audio.pause();
           }
+        });
+
+        audio.play().catch(function () {
+          /* Muted autoplay can still be disabled by browser preferences. */
         });
       }
 
