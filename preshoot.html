@@ -1,0 +1,1108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5f0e8" />
+    <meta name="description" content="Preshoot moments from Gayashan and Vishmi." />
+    <title>Gayashan &amp; Vishmi — Preshoot</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --ivory: #f7f3ec;
+        --paper: #fffdf9;
+        --ink: #292b27;
+        --muted: #76766e;
+        --sage: #66745f;
+        --sage-dark: #4d5948;
+        --blush: #d8b7ad;
+        --gold: #ae8b57;
+        --line: rgba(41, 43, 39, 0.12);
+        --serif: "Playfair Display", Georgia, serif;
+        --sans: "DM Sans", system-ui, sans-serif;
+        --script: "Great Vibes", cursive;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        overflow-x: hidden;
+        color: var(--ink);
+        font-family: var(--sans);
+        background:
+          radial-gradient(circle at 8% 4%, rgba(216, 183, 173, 0.28), transparent 25rem),
+          radial-gradient(circle at 94% 40%, rgba(102, 116, 95, 0.16), transparent 28rem),
+          var(--ivory);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      button,
+      a {
+        font: inherit;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 2rem));
+        margin: 0 auto;
+        padding: 1.1rem 0 5rem;
+      }
+
+      .topbar {
+        min-height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .monogram {
+        color: var(--ink);
+        font-family: var(--script);
+        font-size: 1.7rem;
+        line-height: 1;
+        text-decoration: none;
+      }
+
+      .topbar-meta {
+        color: var(--muted);
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .button {
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.65rem 1rem;
+        color: #fff;
+        background: var(--sage);
+        border: 1px solid var(--sage);
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 180ms ease, transform 180ms ease;
+      }
+
+      .button:hover {
+        background: var(--sage-dark);
+        transform: translateY(-1px);
+      }
+
+      .button.secondary {
+        color: var(--ink);
+        background: transparent;
+        border-color: var(--line);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr minmax(280px, 0.72fr);
+        gap: clamp(2rem, 7vw, 6rem);
+        align-items: end;
+        padding: clamp(3.2rem, 7vw, 6.2rem) 0 clamp(2rem, 4vw, 3.2rem);
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin: 0 0 1.3rem;
+        color: var(--sage-dark);
+        font-size: 0.67rem;
+        font-weight: 600;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 34px;
+        height: 1px;
+        background: var(--gold);
+      }
+
+      h1 {
+        max-width: 9ch;
+        margin: 0;
+        font-family: var(--serif);
+        font-size: clamp(3.4rem, 8vw, 5.4rem);
+        font-weight: 400;
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-copy {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.02rem;
+        line-height: 1.7;
+      }
+
+      .hero-copy strong {
+        display: block;
+        margin-bottom: 0.45rem;
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: 1.15rem;
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding: 0.85rem 1rem;
+        background: rgba(255, 253, 249, 0.72);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+      }
+
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+      }
+
+      .filter {
+        min-height: 36px;
+        padding: 0.45rem 0.9rem;
+        color: var(--muted);
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
+      }
+
+      .filter:hover {
+        color: var(--ink);
+      }
+
+      .filter[aria-pressed="true"] {
+        color: var(--sage-dark);
+        background: rgba(102, 116, 95, 0.12);
+        border-color: rgba(102, 116, 95, 0.18);
+      }
+
+      .toolbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .count {
+        color: var(--muted);
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .count strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .slideshow-btn {
+        min-height: 36px;
+        padding: 0.5rem 0.95rem;
+        font-size: 0.72rem;
+      }
+
+      .gallery {
+        columns: 3 240px;
+        column-gap: 1rem;
+      }
+
+      .tile {
+        break-inside: avoid;
+        margin: 0 0 1rem;
+        padding: 0;
+        width: 100%;
+        display: block;
+        overflow: hidden;
+        color: inherit;
+        background: rgba(255, 253, 249, 0.55);
+        border: 1px solid rgba(41, 43, 39, 0.08);
+        border-radius: 18px;
+        cursor: pointer;
+        text-align: left;
+        opacity: 0;
+        transform: translateY(12px);
+        animation: rise 700ms ease forwards;
+        transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+      }
+
+      .tile:hover {
+        border-color: rgba(102, 116, 95, 0.28);
+        box-shadow: 0 18px 40px rgba(41, 43, 39, 0.1);
+        transform: translateY(-3px);
+      }
+
+      .tile:nth-child(1) { animation-delay: 40ms; }
+      .tile:nth-child(2) { animation-delay: 90ms; }
+      .tile:nth-child(3) { animation-delay: 140ms; }
+      .tile:nth-child(4) { animation-delay: 190ms; }
+      .tile:nth-child(5) { animation-delay: 240ms; }
+      .tile:nth-child(6) { animation-delay: 290ms; }
+      .tile:nth-child(7) { animation-delay: 340ms; }
+      .tile:nth-child(8) { animation-delay: 390ms; }
+      .tile:nth-child(9) { animation-delay: 440ms; }
+      .tile:nth-child(10) { animation-delay: 490ms; }
+      .tile:nth-child(11) { animation-delay: 540ms; }
+      .tile:nth-child(12) { animation-delay: 590ms; }
+      .tile:nth-child(13) { animation-delay: 640ms; }
+
+      @keyframes rise {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .tile-media {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        background: linear-gradient(145deg, rgba(102, 116, 95, 0.12), rgba(216, 183, 173, 0.18));
+      }
+
+      .tile-media img {
+        display: block;
+        width: 100%;
+        height: auto;
+        vertical-align: middle;
+        transition: transform 480ms ease;
+      }
+
+      .tile:hover .tile-media img {
+        transform: scale(1.035);
+      }
+
+      .tile-badge {
+        position: absolute;
+        left: 0.75rem;
+        bottom: 0.75rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.35rem 0.65rem;
+        color: var(--ink);
+        background: rgba(255, 253, 249, 0.88);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 999px;
+        backdrop-filter: blur(10px);
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .tile-badge svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      .tile-caption {
+        padding: 0.85rem 1rem 1rem;
+      }
+
+      .tile-caption span {
+        display: block;
+        overflow: hidden;
+        color: var(--muted);
+        font-size: 0.78rem;
+        letter-spacing: 0.02em;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 2.4rem;
+        padding-top: 1.2rem;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.7rem;
+      }
+
+      .footer-actions {
+        display: flex;
+        gap: 0.55rem;
+      }
+
+      .music {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 10;
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+        padding: 0;
+        color: var(--ink);
+        background: rgba(255, 253, 249, 0.86);
+        border: 1px solid rgba(255, 255, 255, 0.82);
+        border-radius: 50%;
+        box-shadow: 0 8px 30px rgba(41, 43, 39, 0.13);
+        backdrop-filter: blur(12px);
+        cursor: pointer;
+      }
+
+      .music svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .music[aria-pressed="false"] .sound-on,
+      .music[aria-pressed="true"] .sound-off {
+        display: none;
+      }
+
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 40;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        padding: 0;
+        background: #0f100e;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 260ms ease, visibility 260ms ease;
+      }
+
+      .lightbox.open {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .lightbox-progress {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        width: 100%;
+        height: 3px;
+        background: rgba(255, 253, 249, 0.12);
+      }
+
+      .lightbox-progress span {
+        display: block;
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, var(--blush), var(--sage));
+        transition: width 80ms linear;
+      }
+
+      .lightbox-top {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: calc(0.9rem + env(safe-area-inset-top)) 1.1rem 0.7rem;
+        color: rgba(255, 253, 249, 0.88);
+      }
+
+      .lightbox-brand {
+        font-family: var(--script);
+        font-size: 1.55rem;
+        line-height: 1;
+      }
+
+      .lightbox-top-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+      }
+
+      .lightbox-chip,
+      .lightbox-close,
+      .lightbox-nav,
+      .lightbox-play {
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+        color: var(--ink);
+        background: rgba(255, 253, 249, 0.92);
+        border: 0;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .lightbox-chip {
+        width: auto;
+        min-height: 36px;
+        padding: 0.4rem 0.85rem;
+        border-radius: 999px;
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+
+      .lightbox-frame {
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        background: #0f100e;
+      }
+
+      .lightbox-stage {
+        position: relative;
+        min-height: 0;
+      }
+
+      .lightbox-frame img,
+      .lightbox-frame iframe {
+        display: block;
+        width: min(100%, 1400px);
+        height: min(100%, calc(100svh - 9.5rem));
+        max-height: calc(100svh - 9.5rem);
+        border: 0;
+        object-fit: contain;
+        background: #0f100e;
+        opacity: 0;
+        transform: scale(1.015);
+        animation: reveal 480ms ease forwards;
+      }
+
+      .lightbox-frame iframe {
+        width: min(100%, 1280px);
+        aspect-ratio: 16 / 9;
+        height: auto;
+        max-height: calc(100svh - 9.5rem);
+      }
+
+      @keyframes reveal {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        z-index: 2;
+        transform: translateY(-50%);
+      }
+
+      .lightbox-nav.prev {
+        left: max(0.75rem, env(safe-area-inset-left));
+      }
+
+      .lightbox-nav.next {
+        right: max(0.75rem, env(safe-area-inset-right));
+      }
+
+      .lightbox-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.85rem 1.1rem calc(1rem + env(safe-area-inset-bottom));
+        color: rgba(255, 253, 249, 0.88);
+        font-size: 0.85rem;
+      }
+
+      .lightbox-bottom a {
+        color: rgba(255, 253, 249, 0.88);
+      }
+
+      .lightbox-nav svg,
+      .lightbox-close svg,
+      .lightbox-play svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .lightbox-play[aria-pressed="true"] .icon-play,
+      .lightbox-play[aria-pressed="false"] .icon-pause {
+        display: none;
+      }
+
+      @media (hover: none) {
+        .button:hover,
+        .tile:hover {
+          transform: none;
+          box-shadow: none;
+        }
+
+        .tile:hover .tile-media img {
+          transform: none;
+        }
+      }
+
+      @media (max-width: 820px) {
+        .shell {
+          width: 100%;
+          padding: calc(0.7rem + env(safe-area-inset-top)) 1rem calc(2.4rem + env(safe-area-inset-bottom));
+        }
+
+        .topbar-meta {
+          display: none;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+          padding: 2.4rem 0 1.6rem;
+        }
+
+        h1 {
+          max-width: none;
+          font-size: clamp(3rem, 14vw, 4.2rem);
+        }
+
+        .toolbar {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .toolbar-actions {
+          justify-content: space-between;
+        }
+
+        .gallery {
+          columns: 2 140px;
+          column-gap: 0.75rem;
+        }
+
+        .tile {
+          margin-bottom: 0.75rem;
+          border-radius: 14px;
+        }
+
+        .footer {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .footer-actions {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .footer-actions .button {
+          width: 100%;
+        }
+
+        .music {
+          right: max(0.85rem, env(safe-area-inset-right));
+          bottom: max(0.85rem, env(safe-area-inset-bottom));
+        }
+
+        .lightbox-frame img,
+        .lightbox-frame iframe {
+          width: 100%;
+          max-height: calc(100svh - 10rem);
+        }
+
+        .lightbox-nav {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      @media (max-width: 460px) {
+        .gallery {
+          columns: 1;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+
+        .tile {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <audio
+      id="bgm"
+      preload="metadata"
+      autoplay
+      loop
+      playsinline
+      muted
+      src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/be/Clair_de_lune_%28Claude_Debussy%29_Suite_bergamasque.ogg/Clair_de_lune_%28Claude_Debussy%29_Suite_bergamasque.ogg.mp3"
+    ></audio>
+
+    <main class="shell">
+      <nav class="topbar" aria-label="Wedding navigation">
+        <a class="monogram" href="card.html">G &amp; V</a>
+        <span class="topbar-meta">05 October 2026 · Negombo Road, Divulapitiya</span>
+        <a class="button secondary" href="card.html">View invitation</a>
+      </nav>
+
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Our story so far</p>
+          <h1>Preshoot.</h1>
+        </div>
+        <p class="hero-copy">
+          <strong>Quiet frames from the days before forever.</strong>
+          Browse the photos and films from our shared Google Drive folder — open any
+          moment, or start the full-screen slideshow.
+        </p>
+      </header>
+
+      <div class="toolbar">
+        <div class="filters" role="group" aria-label="Filter media">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter" type="button" data-filter="image" aria-pressed="false">Photos</button>
+          <button class="filter" type="button" data-filter="video" aria-pressed="false">Videos</button>
+        </div>
+        <div class="toolbar-actions">
+          <p class="count" id="mediaCount" aria-live="polite"></p>
+          <button class="button slideshow-btn" id="slideshowBtn" type="button">Start slideshow</button>
+        </div>
+      </div>
+
+      <section class="gallery" id="gallery" aria-label="Preshoot gallery"></section>
+
+      <footer class="footer">
+        <span>Gayashan &amp; Vishmi · Monday, October 05, 2026</span>
+        <div class="footer-actions">
+          <a
+            class="button secondary"
+            href="https://drive.google.com/drive/folders/1PZBHHoYzgMnpzguHicXdG0nGsWG3yCH3?usp=sharing"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open Drive folder
+          </a>
+          <a class="button" href="card.html">Back to invitation</a>
+        </div>
+      </footer>
+    </main>
+
+    <button class="music" id="muteBtn" type="button" aria-label="Play music" aria-pressed="false">
+      <svg class="sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+        <path d="M9 18V5l10-2v13" stroke-linecap="round" stroke-linejoin="round"></path>
+        <circle cx="6" cy="18" r="3"></circle>
+        <circle cx="16" cy="16" r="3"></circle>
+      </svg>
+      <svg class="sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+        <path d="M9 18V5l10-2v13" stroke-linecap="round" stroke-linejoin="round"></path>
+        <circle cx="6" cy="18" r="3"></circle>
+        <path d="m3 3 18 18" stroke-linecap="round"></path>
+      </svg>
+    </button>
+
+    <div class="lightbox" id="lightbox" hidden>
+      <div class="lightbox-progress" aria-hidden="true"><span id="lightboxProgress"></span></div>
+      <div class="lightbox-top">
+        <span class="lightbox-brand">G &amp; V</span>
+        <div class="lightbox-top-actions">
+          <button class="lightbox-play" id="lightboxPlay" type="button" aria-label="Pause slideshow" aria-pressed="true">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M8.5 6.8v10.4c0 .7.8 1.1 1.4.7l8.1-5.2c.5-.3.5-1.1 0-1.4L9.9 6.1c-.6-.4-1.4 0-1.4.7z"></path>
+            </svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M7.5 6h3v12h-3V6zm6 0h3v12h-3V6z"></path>
+            </svg>
+          </button>
+          <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <path d="M6 6l12 12M18 6 6 18" stroke-linecap="round"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="lightbox-stage">
+        <div class="lightbox-frame" id="lightboxFrame" role="dialog" aria-modal="true" aria-label="Fullscreen slideshow"></div>
+        <button class="lightbox-nav prev" id="lightboxPrev" type="button" aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <path d="M15 5 8 12l7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <button class="lightbox-nav next" id="lightboxNext" type="button" aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <path d="m9 5 7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="lightbox-bottom">
+        <span id="lightboxLabel"></span>
+        <a id="lightboxDrive" href="#" target="_blank" rel="noreferrer">Open in Drive</a>
+      </div>
+    </div>
+
+    <script>
+      var MEDIA = [
+        { id: "14Y6gLEjPz-47OQszMcQQn7xePITfQda_", name: "Evening walk", type: "video" },
+        { id: "1cA2IUgdv8JqApQFEAgoMiAWhwFgCRINO", name: "Soft light", type: "video" },
+        { id: "1lOVkbAiHvBxg1kNvssNtsd3xRIvSQnFI", name: "January afternoon", type: "image" },
+        { id: "1uHkPiEN6ErxsVokjbEDzZBR81WAJXMWU", name: "February morning", type: "image" },
+        { id: "1L3asTrziziNNrOrVHFdCMR2zMVayY7LE", name: "Golden hour", type: "video" },
+        { id: "1rUGcr7hyOB8DxslaCK1sySDWwa79bKCw", name: "Quiet smiles", type: "video" },
+        { id: "1ajvaMbyNKxhDVXfxKWbV_NgtOBGg07G6", name: "Together", type: "video" },
+        { id: "1_xrSPyQpziXahBgxUemz9J__ZjtpcNew", name: "Night frames", type: "video" },
+        { id: "1Jn4WmUYybzuxqBHandc2Tg3iazrT5xSM", name: "Garden light", type: "video" },
+        { id: "1mp0d_6eeA34zp6EHB9ai16rerxDdPWxE", name: "February eighth", type: "video" },
+        { id: "1XPQ7NR_Pt75uDLnJCJ62BrEkjTwQp5Ui", name: "Late afternoon", type: "video" },
+        { id: "1YpDLFJeC8K2DHWD6nq_h4sRR-Q7CTqpd", name: "Near dusk", type: "video" },
+        { id: "1fffvC_9D_q_oEIHGyi5ssYDcTgJamfTU", name: "Valentine week", type: "video" },
+      ];
+
+      var gallery = document.getElementById("gallery");
+      var mediaCount = document.getElementById("mediaCount");
+      var lightbox = document.getElementById("lightbox");
+      var lightboxFrame = document.getElementById("lightboxFrame");
+      var lightboxLabel = document.getElementById("lightboxLabel");
+      var lightboxDrive = document.getElementById("lightboxDrive");
+      var lightboxProgress = document.getElementById("lightboxProgress");
+      var lightboxPlay = document.getElementById("lightboxPlay");
+      var activeFilter = "all";
+      var visibleItems = MEDIA.slice();
+      var activeIndex = 0;
+      var slideshowMode = false;
+      var slideshowPlaying = false;
+      var slideTimer = null;
+      var progressTimer = null;
+      var slideStartedAt = 0;
+      var slideDuration = 0;
+      var PHOTO_MS = 5000;
+      var VIDEO_MS = 18000;
+
+      function thumbUrl(id) {
+        return "https://drive.google.com/thumbnail?id=" + encodeURIComponent(id) + "&sz=w1200";
+      }
+
+      function driveUrl(id) {
+        return "https://drive.google.com/file/d/" + encodeURIComponent(id) + "/view";
+      }
+
+      function previewUrl(id) {
+        return "https://drive.google.com/file/d/" + encodeURIComponent(id) + "/preview";
+      }
+
+      function imageUrl(id) {
+        return "https://lh3.googleusercontent.com/d/" + encodeURIComponent(id) + "=w2400";
+      }
+
+      function playIcon() {
+        return (
+          '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+          '<path d="M8.5 6.8v10.4c0 .7.8 1.1 1.4.7l8.1-5.2c.5-.3.5-1.1 0-1.4L9.9 6.1c-.6-.4-1.4 0-1.4.7z"></path>' +
+          "</svg>"
+        );
+      }
+
+      function clearSlideTimers() {
+        if (slideTimer) {
+          clearTimeout(slideTimer);
+          slideTimer = null;
+        }
+        if (progressTimer) {
+          clearInterval(progressTimer);
+          progressTimer = null;
+        }
+      }
+
+      function setProgress(percent) {
+        lightboxProgress.style.width = Math.max(0, Math.min(100, percent)) + "%";
+      }
+
+      function updatePlayButton() {
+        lightboxPlay.setAttribute("aria-pressed", String(slideshowPlaying));
+        lightboxPlay.setAttribute(
+          "aria-label",
+          slideshowPlaying ? "Pause slideshow" : "Play slideshow"
+        );
+      }
+
+      function scheduleAdvance(duration) {
+        clearSlideTimers();
+        slideDuration = duration;
+        slideStartedAt = Date.now();
+        setProgress(0);
+
+        if (!slideshowPlaying) return;
+
+        progressTimer = setInterval(function () {
+          var elapsed = Date.now() - slideStartedAt;
+          setProgress((elapsed / slideDuration) * 100);
+        }, 80);
+
+        slideTimer = setTimeout(function () {
+          setProgress(100);
+          stepLightbox(1, true);
+        }, slideDuration);
+      }
+
+      function render() {
+        visibleItems = MEDIA.filter(function (item) {
+          return activeFilter === "all" || item.type === activeFilter;
+        });
+
+        var photos = visibleItems.filter(function (item) {
+          return item.type === "image";
+        }).length;
+        var videos = visibleItems.length - photos;
+
+        mediaCount.innerHTML =
+          "<strong>" +
+          visibleItems.length +
+          "</strong> moments · " +
+          photos +
+          " photos · " +
+          videos +
+          " videos";
+
+        gallery.innerHTML = visibleItems
+          .map(function (item, index) {
+            var badge =
+              item.type === "video"
+                ? '<span class="tile-badge">' + playIcon() + "Video</span>"
+                : '<span class="tile-badge">Photo</span>';
+
+            return (
+              '<button class="tile" type="button" data-index="' +
+              index +
+              '" aria-label="Open ' +
+              item.name +
+              '">' +
+              '<span class="tile-media">' +
+              '<img src="' +
+              thumbUrl(item.id) +
+              '" alt="' +
+              item.name +
+              '" loading="lazy" />' +
+              badge +
+              "</span>" +
+              '<span class="tile-caption"><span>' +
+              item.name +
+              "</span></span>" +
+              "</button>"
+            );
+          })
+          .join("");
+      }
+
+      function showSlide(index, keepSlideshow) {
+        if (!visibleItems.length) return;
+
+        activeIndex = (index + visibleItems.length) % visibleItems.length;
+        var item = visibleItems[activeIndex];
+        slideshowMode = !!keepSlideshow || slideshowMode;
+
+        lightbox.hidden = false;
+        requestAnimationFrame(function () {
+          lightbox.classList.add("open");
+        });
+
+        lightboxLabel.textContent =
+          item.name +
+          " · " +
+          (item.type === "video" ? "Video" : "Photo") +
+          " · " +
+          (activeIndex + 1) +
+          " / " +
+          visibleItems.length;
+        lightboxDrive.href = driveUrl(item.id);
+
+        if (item.type === "image") {
+          lightboxFrame.innerHTML =
+            '<img src="' + imageUrl(item.id) + '" alt="' + item.name + '" />';
+        } else {
+          lightboxFrame.innerHTML =
+            '<iframe src="' +
+            previewUrl(item.id) +
+            '" title="' +
+            item.name +
+            '" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>';
+        }
+
+        document.body.style.overflow = "hidden";
+        updatePlayButton();
+
+        if (slideshowMode && slideshowPlaying) {
+          scheduleAdvance(item.type === "video" ? VIDEO_MS : PHOTO_MS);
+        } else {
+          clearSlideTimers();
+          setProgress(slideshowMode ? 0 : 0);
+        }
+      }
+
+      function openLightbox(index) {
+        slideshowMode = false;
+        slideshowPlaying = false;
+        clearSlideTimers();
+        setProgress(0);
+        updatePlayButton();
+        showSlide(index, false);
+        document.getElementById("lightboxClose").focus();
+      }
+
+      function startSlideshow(index) {
+        if (!visibleItems.length) return;
+        slideshowMode = true;
+        slideshowPlaying = true;
+        showSlide(typeof index === "number" ? index : 0, true);
+        document.getElementById("lightboxClose").focus();
+      }
+
+      function closeLightbox() {
+        slideshowMode = false;
+        slideshowPlaying = false;
+        clearSlideTimers();
+        setProgress(0);
+        updatePlayButton();
+        lightbox.classList.remove("open");
+        document.body.style.overflow = "";
+        setTimeout(function () {
+          if (!lightbox.classList.contains("open")) {
+            lightbox.hidden = true;
+            lightboxFrame.innerHTML = "";
+          }
+        }, 240);
+      }
+
+      function stepLightbox(delta, fromAuto) {
+        if (!visibleItems.length) return;
+        if (!fromAuto) {
+          /* Manual nav keeps current slideshow play state */
+        }
+        showSlide(activeIndex + delta, slideshowMode);
+      }
+
+      function toggleSlideshowPlay() {
+        if (!lightbox.classList.contains("open")) {
+          startSlideshow(0);
+          return;
+        }
+
+        slideshowMode = true;
+        slideshowPlaying = !slideshowPlaying;
+        updatePlayButton();
+
+        if (slideshowPlaying) {
+          var item = visibleItems[activeIndex];
+          scheduleAdvance(item.type === "video" ? VIDEO_MS : PHOTO_MS);
+        } else {
+          clearSlideTimers();
+        }
+      }
+
+      document.querySelectorAll(".filter").forEach(function (button) {
+        button.addEventListener("click", function () {
+          activeFilter = button.getAttribute("data-filter");
+          document.querySelectorAll(".filter").forEach(function (el) {
+            el.setAttribute("aria-pressed", String(el === button));
+          });
+          render();
+        });
+      });
+
+      gallery.addEventListener("click", function (event) {
+        var tile = event.target.closest(".tile");
+        if (!tile) return;
+        openLightbox(Number(tile.getAttribute("data-index")));
+      });
+
+      document.getElementById("slideshowBtn").addEventListener("click", function () {
+        startSlideshow(0);
+      });
+
+      document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
+      document.getElementById("lightboxPrev").addEventListener("click", function () {
+        stepLightbox(-1);
+      });
+      document.getElementById("lightboxNext").addEventListener("click", function () {
+        stepLightbox(1);
+      });
+      lightboxPlay.addEventListener("click", toggleSlideshowPlay);
+
+      document.addEventListener("keydown", function (event) {
+        if (!lightbox.classList.contains("open")) return;
+        if (event.key === "Escape") closeLightbox();
+        if (event.key === "ArrowLeft") stepLightbox(-1);
+        if (event.key === "ArrowRight") stepLightbox(1);
+        if (event.key === " " || event.key === "k") {
+          event.preventDefault();
+          toggleSlideshowPlay();
+        }
+      });
+
+      function setupMusic() {
+        var audio = document.getElementById("bgm");
+        var button = document.getElementById("muteBtn");
+        audio.volume = 0.22;
+
+        button.addEventListener("click", function () {
+          var shouldPlay = button.getAttribute("aria-pressed") !== "true";
+          button.setAttribute("aria-pressed", String(shouldPlay));
+          button.setAttribute("aria-label", shouldPlay ? "Pause music" : "Play music");
+
+          if (shouldPlay) {
+            audio.muted = false;
+            audio.play().catch(function () {
+              button.setAttribute("aria-pressed", "false");
+              button.setAttribute("aria-label", "Play music");
+            });
+          } else {
+            audio.pause();
+          }
+        });
+
+        audio.play().catch(function () {});
+      }
+
+      render();
+      setupMusic();
+    </script>
+  </body>
+</html>

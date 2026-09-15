@@ -567,7 +567,7 @@
             >
               View location
             </a>
-            <button class="button secondary" id="icsBtn" type="button">Save the date</button>
+            <a class="button secondary" href="preshoot.html">View Preshoot</a>
             <a class="button" href="guestList.html">Find your table</a>
           </div>
         </section>
@@ -649,11 +649,7 @@
     </button>
 
     <script>
-      var EVENT_TITLE = "Gayashan & Vishmi — Wedding";
-      var EVENT_LOCATION = "Senuri Grand Castello, Negombo Road, Divulapitiya";
-      var EVENT_URL = "https://maps.app.goo.gl/a8YGA2KU18Kjvm8M9";
       var EVENT_START_UTC_MS = Date.UTC(2026, 9, 5, 16, 0, 0);
-      var EVENT_END_UTC_MS = Date.UTC(2026, 9, 5, 19, 0, 0);
 
       function pad2(value) {
         return String(value).padStart(2, "0");
@@ -672,59 +668,6 @@
         setPart("hours", pad2(Math.floor((total % 86400) / 3600)));
         setPart("minutes", pad2(Math.floor((total % 3600) / 60)));
         setPart("seconds", pad2(total % 60));
-      }
-
-      function formatIcsUtc(milliseconds) {
-        var date = new Date(milliseconds);
-        return (
-          date.getUTCFullYear() +
-          pad2(date.getUTCMonth() + 1) +
-          pad2(date.getUTCDate()) +
-          "T" +
-          pad2(date.getUTCHours()) +
-          pad2(date.getUTCMinutes()) +
-          pad2(date.getUTCSeconds()) +
-          "Z"
-        );
-      }
-
-      function escapeIcs(text) {
-        return String(text)
-          .replace(/\\/g, "\\\\")
-          .replace(/\n/g, "\\n")
-          .replace(/,/g, "\\,")
-          .replace(/;/g, "\\;");
-      }
-
-      function downloadCalendar() {
-        var lines = [
-          "BEGIN:VCALENDAR",
-          "VERSION:2.0",
-          "PRODID:-//Wedding Invitation//EN",
-          "CALSCALE:GREGORIAN",
-          "BEGIN:VEVENT",
-          "UID:" + EVENT_START_UTC_MS + "@wedding-invite",
-          "DTSTAMP:" + formatIcsUtc(Date.now()),
-          "DTSTART:" + formatIcsUtc(EVENT_START_UTC_MS),
-          "DTEND:" + formatIcsUtc(EVENT_END_UTC_MS),
-          "SUMMARY:" + escapeIcs(EVENT_TITLE),
-          "LOCATION:" + escapeIcs(EVENT_LOCATION),
-          "URL:" + escapeIcs(EVENT_URL),
-          "DESCRIPTION:" + escapeIcs("Wedding celebration. Map: " + EVENT_URL),
-          "END:VEVENT",
-          "END:VCALENDAR",
-        ];
-        var blob = new Blob([lines.join("\r\n")], { type: "text/calendar;charset=utf-8" });
-        var url = URL.createObjectURL(blob);
-        var anchor = document.createElement("a");
-        anchor.href = url;
-        anchor.download = "Gayashan-Vishmi-Wedding.ics";
-        document.body.appendChild(anchor);
-        anchor.click();
-        anchor.remove();
-        setTimeout(function () {
-          URL.revokeObjectURL(url);
-        }, 1000);
       }
 
       function setupMusic() {
@@ -753,7 +696,6 @@
         });
       }
 
-      document.getElementById("icsBtn").addEventListener("click", downloadCalendar);
       tickCountdown();
       setInterval(tickCountdown, 1000);
       setupMusic();
