@@ -233,6 +233,41 @@
         font-weight: 600;
       }
 
+      .slideshow-btn:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .gallery-status {
+        margin: 0 0 1.5rem;
+        padding: 2.4rem 1.4rem;
+        color: var(--muted);
+        background: rgba(255, 253, 249, 0.72);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        text-align: center;
+      }
+
+      .gallery-status[hidden] {
+        display: none !important;
+      }
+
+      .gallery-status strong {
+        display: block;
+        margin-bottom: 0.45rem;
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: 1.35rem;
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      .gallery-status p {
+        margin: 0;
+        line-height: 1.65;
+      }
+
       .slideshow-btn {
         min-height: 36px;
         padding: 0.5rem 0.95rem;
@@ -693,8 +728,8 @@
         </div>
         <p class="hero-copy">
           <strong>Quiet frames from the days before forever.</strong>
-          Browse the photos and films from our shared Google Drive folder — open any
-          moment, or start the full-screen slideshow.
+          Browse photos and films from our shared Drive folder. New uploads appear
+          here automatically — open any moment, or start the full-screen slideshow.
         </p>
       </header>
 
@@ -706,10 +741,12 @@
         </div>
         <div class="toolbar-actions">
           <p class="count" id="mediaCount" aria-live="polite"></p>
+          <button class="button secondary slideshow-btn" id="refreshBtn" type="button">Refresh</button>
           <button class="button slideshow-btn" id="slideshowBtn" type="button">Start slideshow</button>
         </div>
       </div>
 
+      <div class="gallery-status" id="galleryStatus" hidden></div>
       <section class="gallery" id="gallery" aria-label="Preshoot gallery"></section>
 
       <footer class="footer">
@@ -717,7 +754,7 @@
         <div class="footer-actions">
           <a
             class="button secondary"
-            href="https://drive.google.com/drive/folders/1PZBHHoYzgMnpzguHicXdG0nGsWG3yCH3?usp=sharing"
+            href="https://drive.google.com/drive/folders/1GckkRAYaA7xPZnm4rI3InbouSqPO77U9?usp=sharing"
             target="_blank"
             rel="noreferrer"
           >
@@ -781,24 +818,22 @@
     </div>
 
     <script>
-      var MEDIA = [
-        { id: "14Y6gLEjPz-47OQszMcQQn7xePITfQda_", name: "Evening walk", type: "video" },
-        { id: "1cA2IUgdv8JqApQFEAgoMiAWhwFgCRINO", name: "Soft light", type: "video" },
-        { id: "1lOVkbAiHvBxg1kNvssNtsd3xRIvSQnFI", name: "January afternoon", type: "image" },
-        { id: "1uHkPiEN6ErxsVokjbEDzZBR81WAJXMWU", name: "February morning", type: "image" },
-        { id: "1L3asTrziziNNrOrVHFdCMR2zMVayY7LE", name: "Golden hour", type: "video" },
-        { id: "1rUGcr7hyOB8DxslaCK1sySDWwa79bKCw", name: "Quiet smiles", type: "video" },
-        { id: "1ajvaMbyNKxhDVXfxKWbV_NgtOBGg07G6", name: "Together", type: "video" },
-        { id: "1_xrSPyQpziXahBgxUemz9J__ZjtpcNew", name: "Night frames", type: "video" },
-        { id: "1Jn4WmUYybzuxqBHandc2Tg3iazrT5xSM", name: "Garden light", type: "video" },
-        { id: "1mp0d_6eeA34zp6EHB9ai16rerxDdPWxE", name: "February eighth", type: "video" },
-        { id: "1XPQ7NR_Pt75uDLnJCJ62BrEkjTwQp5Ui", name: "Late afternoon", type: "video" },
-        { id: "1YpDLFJeC8K2DHWD6nq_h4sRR-Q7CTqpd", name: "Near dusk", type: "video" },
-        { id: "1fffvC_9D_q_oEIHGyi5ssYDcTgJamfTU", name: "Valentine week", type: "video" },
-      ];
+      /* Live sources (first one that works wins):
+         1) DRIVE_LIST_URL — Apps Script web app URL from scripts/drive-list.gs
+         2) DRIVE_API_KEY — Google Cloud Drive API key (folder must be link-shared)
+         3) preshoot-media.json — auto-synced from Drive by GitHub Actions every 10 minutes
+      */
+      var DRIVE_FOLDER_ID = "1GckkRAYaA7xPZnm4rI3InbouSqPO77U9";
+      var DRIVE_LIST_URL = "";
+      var DRIVE_API_KEY = "";
+      var MEDIA_JSON_URL = "preshoot-media.json";
 
+      var MEDIA = [];
       var gallery = document.getElementById("gallery");
+      var galleryStatus = document.getElementById("galleryStatus");
       var mediaCount = document.getElementById("mediaCount");
+      var slideshowBtn = document.getElementById("slideshowBtn");
+      var refreshBtn = document.getElementById("refreshBtn");
       var lightbox = document.getElementById("lightbox");
       var lightboxFrame = document.getElementById("lightboxFrame");
       var lightboxLabel = document.getElementById("lightboxLabel");
@@ -806,7 +841,7 @@
       var lightboxProgress = document.getElementById("lightboxProgress");
       var lightboxPlay = document.getElementById("lightboxPlay");
       var activeFilter = "all";
-      var visibleItems = MEDIA.slice();
+      var visibleItems = [];
       var activeIndex = 0;
       var slideshowMode = false;
       var slideshowPlaying = false;
@@ -816,6 +851,7 @@
       var slideDuration = 0;
       var PHOTO_MS = 5000;
       var VIDEO_MS = 18000;
+      var lastSyncedLabel = "";
 
       function thumbUrl(id) {
         return "https://drive.google.com/thumbnail?id=" + encodeURIComponent(id) + "&sz=w1200";
@@ -839,6 +875,43 @@
           '<path d="M8.5 6.8v10.4c0 .7.8 1.1 1.4.7l8.1-5.2c.5-.3.5-1.1 0-1.4L9.9 6.1c-.6-.4-1.4 0-1.4.7z"></path>' +
           "</svg>"
         );
+      }
+
+      function prettyName(name) {
+        return String(name || "Moment")
+          .replace(/\.[^.]+$/, "")
+          .replace(/[_-]+/g, " ")
+          .trim() || "Moment";
+      }
+
+      function normalizeFiles(files) {
+        return (files || [])
+          .map(function (file) {
+            var mime = file.mime || file.mimeType || "";
+            var type = file.type;
+            if (!type) {
+              if (String(mime).indexOf("image/") === 0) type = "image";
+              else if (String(mime).indexOf("video/") === 0) type = "video";
+            }
+            if (!file.id || (type !== "image" && type !== "video")) return null;
+            return {
+              id: file.id,
+              name: prettyName(file.name),
+              type: type,
+              mime: mime,
+            };
+          })
+          .filter(Boolean);
+      }
+
+      function setStatus(title, copy, visible) {
+        if (!visible) {
+          galleryStatus.hidden = true;
+          galleryStatus.innerHTML = "";
+          return;
+        }
+        galleryStatus.hidden = false;
+        galleryStatus.innerHTML = "<strong>" + title + "</strong><p>" + copy + "</p>";
       }
 
       function clearSlideTimers() {
@@ -893,6 +966,14 @@
         }).length;
         var videos = visibleItems.length - photos;
 
+        slideshowBtn.disabled = visibleItems.length === 0;
+
+        if (!MEDIA.length) {
+          mediaCount.innerHTML = "<strong>0</strong> moments" + (lastSyncedLabel ? " · " + lastSyncedLabel : "");
+          gallery.innerHTML = "";
+          return;
+        }
+
         mediaCount.innerHTML =
           "<strong>" +
           visibleItems.length +
@@ -900,7 +981,20 @@
           photos +
           " photos · " +
           videos +
-          " videos";
+          " videos" +
+          (lastSyncedLabel ? " · " + lastSyncedLabel : "");
+
+        if (!visibleItems.length) {
+          gallery.innerHTML = "";
+          setStatus(
+            "Nothing in this filter.",
+            "Try All, Photos, or Videos to see the rest of the gallery.",
+            true
+          );
+          return;
+        }
+
+        setStatus("", "", false);
 
         gallery.innerHTML = visibleItems
           .map(function (item, index) {
@@ -973,7 +1067,7 @@
           scheduleAdvance(item.type === "video" ? VIDEO_MS : PHOTO_MS);
         } else {
           clearSlideTimers();
-          setProgress(slideshowMode ? 0 : 0);
+          setProgress(0);
         }
       }
 
@@ -1011,11 +1105,8 @@
         }, 240);
       }
 
-      function stepLightbox(delta, fromAuto) {
+      function stepLightbox(delta) {
         if (!visibleItems.length) return;
-        if (!fromAuto) {
-          /* Manual nav keeps current slideshow play state */
-        }
         showSlide(activeIndex + delta, slideshowMode);
       }
 
@@ -1037,6 +1128,105 @@
         }
       }
 
+      function formatSyncLabel(updatedAt) {
+        if (!updatedAt) return "";
+        var date = new Date(updatedAt);
+        if (isNaN(date.getTime())) return "";
+        return "updated " + date.toLocaleString();
+      }
+
+      function applyMedia(files, updatedAt) {
+        MEDIA = normalizeFiles(files);
+        lastSyncedLabel = formatSyncLabel(updatedAt);
+        if (!MEDIA.length) {
+          setStatus(
+            "Preshoot photos coming soon.",
+            "This Drive folder is ready. When you upload photos or videos, they will appear here automatically.",
+            true
+          );
+        } else {
+          setStatus("", "", false);
+        }
+        render();
+      }
+
+      function loadFromAppsScript() {
+        if (!DRIVE_LIST_URL) return Promise.reject(new Error("no apps script"));
+        return fetch(DRIVE_LIST_URL + (DRIVE_LIST_URL.indexOf("?") >= 0 ? "&" : "?") + "t=" + Date.now(), {
+          cache: "no-store",
+        }).then(function (response) {
+          if (!response.ok) throw new Error("apps script " + response.status);
+          return response.json();
+        });
+      }
+
+      function loadFromDriveApi() {
+        if (!DRIVE_API_KEY) return Promise.reject(new Error("no api key"));
+        var query =
+          "'" +
+          DRIVE_FOLDER_ID +
+          "' in parents and trashed = false and (mimeType contains 'image/' or mimeType contains 'video/')";
+        var url =
+          "https://www.googleapis.com/drive/v3/files?q=" +
+          encodeURIComponent(query) +
+          "&fields=files(id,name,mimeType,createdTime)" +
+          "&orderBy=createdTime desc" +
+          "&pageSize=200" +
+          "&key=" +
+          encodeURIComponent(DRIVE_API_KEY);
+        return fetch(url, { cache: "no-store" }).then(function (response) {
+          if (!response.ok) throw new Error("drive api " + response.status);
+          return response.json().then(function (data) {
+            return {
+              updatedAt: new Date().toISOString(),
+              files: (data.files || []).map(function (file) {
+                return {
+                  id: file.id,
+                  name: file.name,
+                  mime: file.mimeType,
+                  type: String(file.mimeType).indexOf("image/") === 0 ? "image" : "video",
+                };
+              }),
+            };
+          });
+        });
+      }
+
+      function loadFromMediaJson() {
+        return fetch(MEDIA_JSON_URL + "?t=" + Date.now(), { cache: "no-store" }).then(function (response) {
+          if (!response.ok) throw new Error("media json " + response.status);
+          return response.json();
+        });
+      }
+
+      function loadMedia() {
+        setStatus("Loading moments…", "Fetching the latest photos and videos from Drive.", true);
+        gallery.innerHTML = "";
+        mediaCount.innerHTML = "Loading…";
+        slideshowBtn.disabled = true;
+
+        return loadFromAppsScript()
+          .catch(function () {
+            return loadFromDriveApi();
+          })
+          .catch(function () {
+            return loadFromMediaJson();
+          })
+          .then(function (payload) {
+            applyMedia(payload.files || [], payload.updatedAt);
+          })
+          .catch(function () {
+            MEDIA = [];
+            lastSyncedLabel = "";
+            setStatus(
+              "Couldn’t load the gallery.",
+              "Check your connection, then tap Refresh. You can also open the Drive folder directly.",
+              true
+            );
+            render();
+          });
+      }
+
       document.querySelectorAll(".filter").forEach(function (button) {
         button.addEventListener("click", function () {
           activeFilter = button.getAttribute("data-filter");
@@ -1053,8 +1243,12 @@
         openLightbox(Number(tile.getAttribute("data-index")));
       });
 
-      document.getElementById("slideshowBtn").addEventListener("click", function () {
+      slideshowBtn.addEventListener("click", function () {
         startSlideshow(0);
+      });
+
+      refreshBtn.addEventListener("click", function () {
+        loadMedia();
       });
 
       document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
@@ -1101,7 +1295,7 @@
         audio.play().catch(function () {});
       }
 
-      render();
+      loadMedia();
       setupMusic();
     </script>
   </body>
