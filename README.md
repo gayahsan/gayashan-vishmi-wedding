@@ -8,7 +8,7 @@ A simple wedding website for **Gayashan & Vishmi**, with an invitation card and 
 
 | | |
 | --- | --- |
-| **Date** | Thursday, 05 August 2027 |
+| **Date** | Monday, 05 October 2026 |
 | **Time** | 9:30 PM |
 | **Venue** | Senuri Grand Castello, Negombo Road, Divulapitiya |
 
@@ -35,3 +35,17 @@ Open the files in a browser, or serve the folder locally:
 
 ```bash
 python3 -m http.server 8770
+```
+
+Then visit:
+
+- Invitation: [http://127.0.0.1:8770/card.html](http://127.0.0.1:8770/card.html)
+- Guest list: [http://127.0.0.1:8770/guestList.html](http://127.0.0.1:8770/guestList.html)
+
+## Hosting
+
+Hosted for free on **GitHub Pages** from the `main` branch.
+
+## Note
+
+Guest names on the seating page currently include placeholder/dummy entries for layout and testing. Replace them with the final guest list before sharing widely.
