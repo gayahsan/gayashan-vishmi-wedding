@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#f5f0e8" />
-    <meta name="description" content="Preshoot moments from Gayashan and Vishmi." />
-    <title>Gayashan &amp; Vishmi — Preshoot</title>
+    <meta name="description" content="Photographs and films from the days before Gayashan and Vishmi's wedding." />
+    <title>Gayashan &amp; Vishmi — Our photographs</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -733,31 +733,31 @@
       <nav class="topbar" aria-label="Wedding navigation">
         <a class="monogram" href="card.html">G &amp; V</a>
         <span class="topbar-meta">05 October 2026 · Negombo Road, Divulapitiya</span>
-        <a class="button secondary" href="card.html">View invitation</a>
+        <a class="button secondary" href="card.html">The invitation</a>
       </nav>
 
       <header class="hero">
         <div>
-          <p class="eyebrow">Our story so far</p>
-          <h1>Preshoot.</h1>
+          <p class="eyebrow">The days before</p>
+          <h1>Our photographs.</h1>
         </div>
         <p class="hero-copy">
-          <strong>Quiet frames from the days before forever.</strong>
-          Browse photos and films from our shared Drive folder. New uploads appear
-          here automatically — open any moment, or start the full-screen slideshow.
+          <strong>Quiet frames, taken while the day was still approaching.</strong>
+          Open any photograph or film. New pictures appear here as they are ready —
+          or sit back, and let them unfold on their own.
         </p>
       </header>
 
       <div class="toolbar">
         <div class="filters" role="group" aria-label="Filter media">
           <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
-          <button class="filter" type="button" data-filter="image" aria-pressed="false">Photos</button>
-          <button class="filter" type="button" data-filter="video" aria-pressed="false">Videos</button>
+          <button class="filter" type="button" data-filter="image" aria-pressed="false">Photographs</button>
+          <button class="filter" type="button" data-filter="video" aria-pressed="false">Films</button>
         </div>
         <div class="toolbar-actions">
           <p class="count" id="mediaCount" aria-live="polite"></p>
-          <button class="button secondary slideshow-btn" id="refreshBtn" type="button">Refresh</button>
-          <button class="button slideshow-btn" id="slideshowBtn" type="button">Start slideshow</button>
+          <button class="button secondary slideshow-btn" id="refreshBtn" type="button">Look again</button>
+          <button class="button slideshow-btn" id="slideshowBtn" type="button">Watch together</button>
         </div>
       </div>
 
@@ -768,7 +768,7 @@
         <a href="welcome.html">From our families</a>
         <a href="schedule.html">The evening</a>
         <a href="wishes.html">Leave a blessing</a>
-        <a href="thanks.html">Thank you</a>
+        <a href="thanks.html">With thanks</a>
       </nav>
 
       <footer class="footer">
@@ -780,9 +780,9 @@
             target="_blank"
             rel="noreferrer"
           >
-            Open Drive folder
+            Open the album
           </a>
-          <a class="button" href="card.html">Back to invitation</a>
+          <a class="button" href="card.html">The invitation</a>
         </div>
       </footer>
     </main>
@@ -835,7 +835,7 @@
       </div>
       <div class="lightbox-bottom">
         <span id="lightboxLabel"></span>
-        <a id="lightboxDrive" href="#" target="_blank" rel="noreferrer">Open in Drive</a>
+        <a id="lightboxDrive" href="#" target="_blank" rel="noreferrer">Open the original</a>
       </div>
     </div>
 
@@ -991,7 +991,7 @@
         slideshowBtn.disabled = visibleItems.length === 0;
 
         if (!MEDIA.length) {
-          mediaCount.innerHTML = "<strong>0</strong> moments" + (lastSyncedLabel ? " · " + lastSyncedLabel : "");
+          mediaCount.innerHTML = "<strong>0</strong> frames" + (lastSyncedLabel ? " · " + lastSyncedLabel : "");
           gallery.innerHTML = "";
           return;
         }
@@ -999,18 +999,18 @@
         mediaCount.innerHTML =
           "<strong>" +
           visibleItems.length +
-          "</strong> moments · " +
+          "</strong> frames · " +
           photos +
-          " photos · " +
+          " photographs · " +
           videos +
-          " videos" +
+          " films" +
           (lastSyncedLabel ? " · " + lastSyncedLabel : "");
 
         if (!visibleItems.length) {
           gallery.innerHTML = "";
           setStatus(
-            "Nothing in this filter.",
-            "Try All, Photos, or Videos to see the rest of the gallery.",
+            "Nothing here just now.",
+            "Try All, Photographs, or Films to see the rest of the album.",
             true
           );
           return;
@@ -1022,8 +1022,8 @@
           .map(function (item, index) {
             var badge =
               item.type === "video"
-                ? '<span class="tile-badge">' + playIcon() + "Video</span>"
-                : '<span class="tile-badge">Photo</span>';
+                ? '<span class="tile-badge">' + playIcon() + "Film</span>"
+                : '<span class="tile-badge">Photograph</span>';
 
             return (
               '<button class="tile" type="button" data-index="' +
@@ -1063,7 +1063,7 @@
         lightboxLabel.textContent =
           item.name +
           " · " +
-          (item.type === "video" ? "Video" : "Photo") +
+          (item.type === "video" ? "Film" : "Photograph") +
           " · " +
           (activeIndex + 1) +
           " / " +
@@ -1162,8 +1162,8 @@
         lastSyncedLabel = formatSyncLabel(updatedAt);
         if (!MEDIA.length) {
           setStatus(
-            "Preshoot photos coming soon.",
-            "This Drive folder is ready. When you upload photos or videos, they will appear here automatically.",
+            "The photographs are still arriving.",
+            "New frames will appear here as they are ready. There is no need to wait — return whenever you like.",
             true
           );
         } else {
@@ -1222,9 +1222,9 @@
       }
 
       function loadMedia() {
-        setStatus("Loading moments…", "Fetching the latest photos and videos from Drive.", true);
+        setStatus("A moment, please.", "Gathering the latest photographs and films.", true);
         gallery.innerHTML = "";
-        mediaCount.innerHTML = "Loading…";
+        mediaCount.innerHTML = "A moment…";
         slideshowBtn.disabled = true;
 
         return loadFromAppsScript()
@@ -1241,8 +1241,8 @@
             MEDIA = [];
             lastSyncedLabel = "";
             setStatus(
-              "Couldn’t load the gallery.",
-              "Check your connection, then tap Refresh. You can also open the Drive folder directly.",
+              "The album could not be opened.",
+              "Please try again, or open the photographs from the link below.",
               true
             );
             render();

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#f5f0e8" />
-    <meta name="description" content="Find your table for Gayashan and Vishmi's wedding." />
+    <meta name="description" content="Find your seat for the wedding of Gayashan and Vishmi at Senuri Grand Castello." />
     <title>Gayashan &amp; Vishmi — Guest List</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -703,7 +703,7 @@
       <nav class="topbar" aria-label="Wedding navigation">
         <a class="monogram" href="card.html">G &amp; V</a>
         <span class="topbar-meta">05 October 2026 · Negombo Road, Divulapitiya</span>
-        <a class="button secondary" href="card.html">View invitation</a>
+        <a class="button secondary" href="card.html">The invitation</a>
       </nav>
 
       <header class="hero">
@@ -712,9 +712,9 @@
           <h1>Find your place.</h1>
         </div>
         <p class="hero-copy">
-          <strong>Welcome to our celebration at Senuri Grand Castello.</strong>
-          Search for your name below to find your table, or explore the complete seating
-          plan prepared for our evening together on Negombo Road, Divulapitiya.
+          <strong>A place has been kept for you.</strong>
+          Search for your name, then follow it to your table. The room is arranged
+          with care, so that the people you love are never far from reach.
         </p>
       </header>
 
@@ -728,27 +728,27 @@
           <input
             id="guestSearch"
             type="search"
-            placeholder="Search by guest name…"
+            placeholder="Your name, as it appears on the list"
             autocomplete="off"
           />
         </div>
         <div class="summary" id="summary" aria-live="polite"></div>
       </section>
 
-      <div class="empty" id="emptyState">We couldn’t find that name. Please try another spelling.</div>
+      <div class="empty" id="emptyState">We cannot find that name. Try another spelling, or the first name only.</div>
 
       <section id="tablesSection">
         <div class="section-head">
-          <h2>Seating by table</h2>
-          <p id="resultLabel">Fifteen thoughtfully arranged tables</p>
+          <h2>By table</h2>
+          <p id="resultLabel">Fifteen tables, quietly arranged</p>
         </div>
         <div class="table-grid" id="tableCards"></div>
       </section>
 
       <section id="directorySection">
         <div class="section-head">
-          <h2>Guest directory</h2>
-          <p>Alphabetical order</p>
+          <h2>Every guest</h2>
+          <p>In alphabetical order</p>
         </div>
         <div class="directory">
           <table>
@@ -768,14 +768,14 @@
         <a href="welcome.html">From our families</a>
         <a href="schedule.html">The evening</a>
         <a href="wishes.html">Leave a blessing</a>
-        <a href="thanks.html">Thank you</a>
+        <a href="thanks.html">With thanks</a>
       </nav>
 
       <footer class="footer">
         <span>Gayashan &amp; Vishmi · Monday, October 05, 2026</span>
         <div class="footer-actions">
-          <button class="button secondary" id="printBtn" type="button">Print seating plan</button>
-          <a class="button" href="card.html">Back to invitation</a>
+          <button class="button secondary" id="printBtn" type="button">Print the seating</button>
+          <a class="button" href="card.html">The invitation</a>
         </div>
       </footer>
     </main>
@@ -927,15 +927,15 @@
         var hasResults = filtered.length > 0;
 
         summary.innerHTML =
-          '<div class="stat"><strong>' + filtered.length + '</strong><span>Showing</span></div>' +
+          '<div class="stat"><strong>' + filtered.length + '</strong><span>Guests</span></div>' +
           '<div class="stat"><strong>' + tableNumbers.length + '</strong><span>Tables</span></div>';
 
         emptyState.classList.toggle("visible", !hasResults);
         tablesSection.hidden = !hasResults;
         directorySection.hidden = !hasResults;
         resultLabel.textContent = query
-          ? filtered.length + (filtered.length === 1 ? " matching guest" : " matching guests")
-          : "Fifteen thoughtfully arranged tables";
+          ? filtered.length + (filtered.length === 1 ? " name found" : " names found")
+          : "Fifteen tables, quietly arranged";
 
         if (!hasResults) return;
 
