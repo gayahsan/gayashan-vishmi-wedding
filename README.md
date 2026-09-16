@@ -9,8 +9,8 @@ A simple wedding website for **Gayashan & Vishmi**, with an invitation card and 
 | | |
 | --- | --- |
 | **Date** | Monday, 05 October 2026 |
-| **Time** | 9:30 PM |
-| **Venue** | Senuri Grand Castello, Negombo Road, Divulapitiya |
+| **Time** | 10:25 AM — Poruwa |
+| **Venue** | Centurion's Banquet, Negombo Road, Divulapitiya |
 
 ## Pages
 
