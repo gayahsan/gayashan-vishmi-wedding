@@ -399,6 +399,21 @@
         gap: 0.55rem;
       }
 
+      .site-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem 1.15rem;
+        margin-top: 1.8rem;
+      }
+
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.78rem;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(41, 43, 39, 0.16);
+        padding-bottom: 0.12rem;
+      }
+
       .music {
         position: fixed;
         right: 1rem;
@@ -748,6 +763,13 @@
 
       <div class="gallery-status" id="galleryStatus" hidden></div>
       <section class="gallery" id="gallery" aria-label="Preshoot gallery"></section>
+
+      <nav class="site-nav" aria-label="More from the wedding">
+        <a href="welcome.html">From our families</a>
+        <a href="schedule.html">The evening</a>
+        <a href="wishes.html">Leave a blessing</a>
+        <a href="thanks.html">Thank you</a>
+      </nav>
 
       <footer class="footer">
         <span>Gayashan &amp; Vishmi · Monday, October 05, 2026</span>

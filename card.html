@@ -185,6 +185,26 @@
         margin-top: 2rem;
       }
 
+      .quiet-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem 1.15rem;
+        margin-top: 1.35rem;
+      }
+
+      .quiet-links a {
+        color: var(--muted);
+        font-size: 0.78rem;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(41, 43, 39, 0.16);
+        padding-bottom: 0.12rem;
+      }
+
+      .quiet-links a:hover {
+        color: var(--ink);
+      }
+
       .button {
         min-height: 44px;
         display: inline-flex;
@@ -475,6 +495,12 @@
           width: 100%;
         }
 
+        .quiet-links {
+          grid-column: 1 / -1;
+          justify-content: center;
+          text-align: center;
+        }
+
         .details {
           padding: 2.4rem 1.35rem calc(5.4rem + env(safe-area-inset-bottom));
         }
@@ -570,6 +596,13 @@
             <a class="button secondary" href="preshoot.html">View Preshoot</a>
             <a class="button" href="guestList.html">Find your table</a>
           </div>
+
+          <nav class="quiet-links" aria-label="More from the wedding">
+            <a href="welcome.html">From our families</a>
+            <a href="schedule.html">The evening</a>
+            <a href="wishes.html">Leave a blessing</a>
+            <a href="thanks.html">Thank you</a>
+          </nav>
         </section>
 
         <section class="details" aria-label="Wedding details">

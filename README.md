@@ -17,13 +17,22 @@ A simple wedding website for **Gayashan & Vishmi**, with an invitation card and 
 | File | Purpose |
 | --- | --- |
 | `index.html` | Redirects to the invitation |
-| `card.html` | Wedding invitation, countdown, calendar save, and music |
-| `guestList.html` | Guest seating chart with search (135 guests, 15 tables) |
+| `card.html` | Wedding invitation, countdown, and music |
+| `welcome.html` | A welcome letter from both families |
+| `schedule.html` | Wedding-day timeline |
+| `wishes.html` | Moderated guest blessings |
+| `thanks.html` | A thank-you note to share after the day |
+| `guestList.html` | Guest seating chart with search |
+| `preshoot.html` | Preshoot gallery and slideshow |
 
 ## Features
 
 - Elegant invitation layout with event countdown
 - Save-the-date calendar download (`.ics`)
+- Family welcome letter
+- Wedding-day schedule
+- Moderated wishes wall
+- Thank-you page
 - Guest search by name, with tables and notes
 - Soft background music on both pages (tap the music button to unmute)
 - Mobile-friendly layout
