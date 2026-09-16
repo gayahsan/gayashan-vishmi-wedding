@@ -395,21 +395,21 @@
           <p class="hint">A sentence or two is enough. We will place it on the wall after a quiet review.</p>
 
           <div class="hp" aria-hidden="true">
-            <label for="company">Company</label>
-            <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" hidden />
+            <label for="websiteUrl">Website</label>
+            <input id="websiteUrl" name="website_url" type="text" tabindex="-1" autocomplete="off" />
           </div>
 
           <div class="field">
             <label for="wishName">Your name</label>
-            <input id="wishName" name="name" type="text" maxlength="80" required autocomplete="name" />
+            <input id="wishName" name="guest_name" type="text" maxlength="80" required autocomplete="name" />
           </div>
           <div class="field">
             <label for="wishNote">How you know them <span style="font-weight:400;letter-spacing:0;text-transform:none;color:var(--muted)">(optional)</span></label>
-            <input id="wishNote" name="note" type="text" maxlength="60" placeholder="Friend, aunt, colleague…" />
+            <input id="wishNote" name="guest_note" type="text" maxlength="60" placeholder="Friend, aunt, colleague…" />
           </div>
           <div class="field">
             <label for="wishMessage">Your blessing</label>
-            <textarea id="wishMessage" name="message" maxlength="280" required placeholder="May your home be…"></textarea>
+            <textarea id="wishMessage" name="guest_message" maxlength="280" required placeholder="May your home be…"></textarea>
             <p class="char-count"><span id="charCount">0</span> / 280</p>
           </div>
           <button class="button" id="wishSubmit" type="submit">Send this blessing</button>
@@ -518,16 +518,34 @@
         charCount.textContent = String(messageInput.value.length);
       });
 
+      form.addEventListener("keydown", function (event) {
+        if (event.key !== "Enter") return;
+        if (event.target && event.target.tagName === "TEXTAREA") return;
+        event.preventDefault();
+        if (event.target && event.target.id === "wishName") {
+          document.getElementById("wishNote").focus();
+        } else if (event.target && event.target.id === "wishNote") {
+          messageInput.focus();
+        }
+      });
+
       form.addEventListener("submit", function (event) {
         event.preventDefault();
-        if (document.getElementById("company").value) return;
+        if (document.getElementById("websiteUrl").value) return;
 
         var name = document.getElementById("wishName").value.trim();
         var relation = document.getElementById("wishNote").value.trim();
         var message = messageInput.value.trim();
 
-        if (name.length < 2 || message.length < 8) {
-          showNote("err", "Please add your name and a short blessing before sending.");
+        if (name.length < 2) {
+          showNote("err", "Please add your name, then send the blessing.");
+          document.getElementById("wishName").focus();
+          return;
+        }
+
+        if (message.length < 3) {
+          showNote("err", "Please write a short blessing, then send it.");
+          messageInput.focus();
           return;
         }
 
