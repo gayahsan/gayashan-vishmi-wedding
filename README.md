@@ -19,10 +19,10 @@ A simple wedding website for **Gayashan & Vishmi**, with an invitation card and 
 | --- | --- |
 | `index.html` | Redirects to the invitation |
 | `card.html` | Wedding invitation, countdown, and music |
-| `welcome.html` | A welcome letter from both families |
 | `schedule.html` | Wedding-day timeline |
 | `wishes.html` | Moderated guest blessings |
-| `thanks.html` | A thank-you note to share after the day |
+| `thanks.html` | A thank-you letter from the couple and both families |
+| `welcome.html` | Redirects to the thank-you page |
 | `guestList.html` | Guest seating chart with search |
 | `preshoot.html` | Preshoot gallery and slideshow |
 
@@ -30,7 +30,6 @@ A simple wedding website for **Gayashan & Vishmi**, with an invitation card and 
 
 - Elegant invitation layout with event countdown
 - Save-the-date calendar download (`.ics`)
-- Family welcome letter
 - Wedding-day schedule
 - Moderated wishes wall
 - Thank-you page
