@@ -368,20 +368,6 @@
         height: 12px;
       }
 
-      .tile-caption {
-        padding: 0.85rem 1rem 1rem;
-      }
-
-      .tile-caption span {
-        display: block;
-        overflow: hidden;
-        color: var(--muted);
-        font-size: 0.78rem;
-        letter-spacing: 0.02em;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
       .footer {
         display: flex;
         align-items: center;
@@ -1024,23 +1010,20 @@
                 ? '<span class="tile-badge">' + playIcon() + "Film</span>"
                 : '<span class="tile-badge">Photograph</span>';
 
+            var kind = item.type === "video" ? "film" : "photograph";
+
             return (
               '<button class="tile" type="button" data-index="' +
               index +
               '" aria-label="Open ' +
-              item.name +
+              kind +
               '">' +
               '<span class="tile-media">' +
               '<img src="' +
               thumbUrl(item.id) +
-              '" alt="' +
-              item.name +
-              '" loading="lazy" />' +
+              '" alt="" loading="lazy" />' +
               badge +
               "</span>" +
-              '<span class="tile-caption"><span>' +
-              item.name +
-              "</span></span>" +
               "</button>"
             );
           })
@@ -1059,25 +1042,20 @@
           lightbox.classList.add("open");
         });
 
+        var kind = item.type === "video" ? "Film" : "Photograph";
         lightboxLabel.textContent =
-          item.name +
-          " · " +
-          (item.type === "video" ? "Film" : "Photograph") +
-          " · " +
-          (activeIndex + 1) +
-          " / " +
-          visibleItems.length;
+          kind + " · " + (activeIndex + 1) + " / " + visibleItems.length;
         lightboxDrive.href = driveUrl(item.id);
 
         if (item.type === "image") {
           lightboxFrame.innerHTML =
-            '<img src="' + imageUrl(item.id) + '" alt="' + item.name + '" />';
+            '<img src="' + imageUrl(item.id) + '" alt="' + kind + '" />';
         } else {
           lightboxFrame.innerHTML =
             '<iframe src="' +
             previewUrl(item.id) +
             '" title="' +
-            item.name +
+            kind +
             '" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>';
         }
 
