@@ -825,10 +825,10 @@
     </div>
 
     <script>
-      /* Live sources (first one that works wins):
+      /* Photographs are listed live from the public Drive folder. If that
+         listing is unavailable, the site falls back to preshoot-media.json.
          1) DRIVE_LIST_URL — Apps Script web app URL from scripts/drive-list.gs
          2) DRIVE_API_KEY — Google Cloud Drive API key (folder must be link-shared)
-         3) preshoot-media.json — auto-synced from Drive by GitHub Actions every 10 minutes
       */
       var DRIVE_FOLDER_ID = "1GckkRAYaA7xPZnm4rI3InbouSqPO77U9";
       var DRIVE_LIST_URL = "";
@@ -1134,9 +1134,18 @@
         return "updated " + date.toLocaleString();
       }
 
-      function applyMedia(files, updatedAt) {
-        MEDIA = normalizeFiles(files);
+      function sameMedia(next) {
+        if (MEDIA.length !== next.length) return false;
+        return MEDIA.every(function (item, index) {
+          return item.id === next[index].id && item.type === next[index].type;
+        });
+      }
+
+      function applyMedia(files, updatedAt, silent) {
+        var next = normalizeFiles(files);
         lastSyncedLabel = formatSyncLabel(updatedAt);
+        if (silent && sameMedia(next)) return;
+        MEDIA = next;
         if (!MEDIA.length) {
           setStatus(
             "The photographs are still arriving.",
@@ -1191,6 +1200,43 @@
         });
       }
 
+      function parseDriveListing(text) {
+        var files = [];
+        var seen = {};
+        var pattern = /type\/(image|video)\/([a-zA-Z0-9.+-]+)\)[\s\S]{0,240}?https:\/\/drive\.google\.com\/file\/d\/([A-Za-z0-9_-]+)/g;
+        var match;
+        while ((match = pattern.exec(text))) {
+          var id = match[3];
+          if (seen[id]) continue;
+          seen[id] = true;
+          files.push({
+            id: id,
+            name: id,
+            type: match[1],
+            mime: match[1] + "/" + match[2],
+          });
+        }
+        files.reverse();
+        return files;
+      }
+
+      function loadFromDriveFolder() {
+        var url =
+          "https://r.jina.ai/https://drive.google.com/embeddedfolderview?id=" +
+          encodeURIComponent(DRIVE_FOLDER_ID);
+        return fetch(url, { cache: "no-store" }).then(function (response) {
+          if (!response.ok) throw new Error("drive folder " + response.status);
+          return response.text().then(function (text) {
+            var files = parseDriveListing(text);
+            if (!files.length) throw new Error("drive folder empty");
+            return {
+              updatedAt: new Date().toISOString(),
+              files: files,
+            };
+          });
+        });
+      }
+
       function loadFromMediaJson() {
         return fetch(MEDIA_JSON_URL + "?t=" + Date.now(), { cache: "no-store" }).then(function (response) {
           if (!response.ok) throw new Error("media json " + response.status);
@@ -1198,23 +1244,29 @@
         });
       }
 
-      function loadMedia() {
-        setStatus("A moment, please.", "Gathering the latest photographs and films.", true);
-        gallery.innerHTML = "";
-        mediaCount.innerHTML = "A moment…";
-        slideshowBtn.disabled = true;
+      function loadMedia(silent) {
+        if (!silent) {
+          setStatus("A moment, please.", "Gathering the latest photographs and films.", true);
+          gallery.innerHTML = "";
+          mediaCount.innerHTML = "A moment…";
+          slideshowBtn.disabled = true;
+        }
 
         return loadFromAppsScript()
           .catch(function () {
             return loadFromDriveApi();
           })
           .catch(function () {
+            return loadFromDriveFolder();
+          })
+          .catch(function () {
             return loadFromMediaJson();
           })
           .then(function (payload) {
-            applyMedia(payload.files || [], payload.updatedAt);
+            applyMedia(payload.files || [], payload.updatedAt, silent);
           })
           .catch(function () {
+            if (silent && MEDIA.length) return;
             MEDIA = [];
             lastSyncedLabel = "";
             setStatus(
@@ -1296,6 +1348,9 @@
 
       loadMedia();
       setupMusic();
+      setInterval(function () {
+        loadMedia(true);
+      }, 90000);
     </script>
   </body>
 </html>
