@@ -642,10 +642,22 @@
         .toolbar {
           align-items: stretch;
           flex-direction: column;
+          gap: 0.85rem;
         }
 
         .toolbar-actions {
-          justify-content: space-between;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.6rem;
+        }
+
+        .count {
+          grid-column: 1 / -1;
+          text-align: center;
+        }
+
+        .slideshow-btn {
+          width: 100%;
         }
 
         .gallery {
