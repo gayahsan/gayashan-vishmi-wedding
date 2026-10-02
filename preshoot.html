@@ -452,9 +452,10 @@
         inset: 0;
         z-index: 40;
         display: grid;
-        grid-template-rows: auto 1fr auto;
+        grid-template-rows: auto minmax(0, 1fr);
         padding: 0;
         background: #0f100e;
+        overscroll-behavior: none;
         opacity: 0;
         visibility: hidden;
         transition: opacity 260ms ease, visibility 260ms ease;
@@ -598,13 +599,15 @@
       }
 
       .lightbox-bottom {
-        position: relative;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
         z-index: 3;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
-        margin-top: -2px;
         padding: 0.85rem 1.1rem calc(1rem + env(safe-area-inset-bottom));
         color: rgba(255, 253, 249, 0.88);
         background: #0f100e;
