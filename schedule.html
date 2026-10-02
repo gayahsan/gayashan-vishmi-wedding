@@ -19,7 +19,7 @@
         --ivory: #f7f3ec;
         --paper: #fffdf9;
         --ink: #292b27;
-        --muted: #76766e;
+        --muted: #65655e;
         --sage: #66745f;
         --sage-dark: #4d5948;
         --blush: #d8b7ad;
@@ -67,6 +67,9 @@
       }
 
       .monogram {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
         color: var(--ink);
         font-family: var(--script);
         font-size: 1.7rem;
@@ -76,14 +79,14 @@
 
       .topbar-meta {
         color: var(--muted);
-        font-size: 0.65rem;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.18em;
         text-transform: uppercase;
       }
 
       .button {
-        min-height: 40px;
+        min-height: 44px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -120,7 +123,7 @@
         gap: 0.8rem;
         margin: 0 0 1.3rem;
         color: var(--sage-dark);
-        font-size: 0.67rem;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.25em;
         text-transform: uppercase;
@@ -193,7 +196,7 @@
       .moment-time {
         margin: 0 0 0.35rem;
         color: var(--sage-dark);
-        font-size: 0.68rem;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.18em;
         text-transform: uppercase;
@@ -222,11 +225,14 @@
       }
 
       .site-nav a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
         color: var(--muted);
-        font-size: 0.78rem;
-        text-decoration: none;
-        border-bottom: 1px solid rgba(41, 43, 39, 0.16);
-        padding-bottom: 0.12rem;
+        font-size: 0.86rem;
+        text-decoration: underline;
+        text-decoration-color: rgba(41, 43, 39, 0.22);
+        text-underline-offset: 0.35em;
       }
 
       .footer {
@@ -238,7 +244,7 @@
         padding-top: 1.2rem;
         border-top: 1px solid var(--line);
         color: var(--muted);
-        font-size: 0.7rem;
+        font-size: 0.78rem;
       }
 
       .music {
@@ -266,7 +272,7 @@
       @media (max-width: 760px) {
         .shell {
           width: 100%;
-          padding: calc(0.7rem + env(safe-area-inset-top)) 1rem calc(2.4rem + env(safe-area-inset-bottom));
+          padding: calc(0.7rem + env(safe-area-inset-top)) 1rem calc(5.2rem + env(safe-area-inset-bottom));
         }
         .topbar-meta { display: none; }
         .hero { grid-template-columns: 1fr; gap: 1.1rem; }
@@ -274,6 +280,23 @@
         .music {
           right: max(0.85rem, env(safe-area-inset-right));
           bottom: max(0.85rem, env(safe-area-inset-bottom));
+        }
+      }
+      a:focus-visible,
+      button:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible,
+      select:focus-visible {
+        outline: 2px solid var(--sage-dark);
+        outline-offset: 3px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          scroll-behavior: auto !important;
+          transition: none !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
         }
       }
     </style>
@@ -303,45 +326,90 @@
         </div>
         <p class="hero-copy">
           <strong>Monday, 05 October 2026 · Centurion’s Banquet</strong>
-          Times are a gentle guide. Please arrive a little before the poruwa, and know the day concludes at 3:30.
+          Times are a gentle guide. The poruwa is at 10:35, and the day closes with departure at 3:45.
         </p>
       </header>
 
       <ol class="timeline">
         <li class="moment">
-          <p class="moment-time">9:45 in the morning</p>
+          <p class="moment-time">9:00 until 10:00</p>
+          <h2>Morning meal</h2>
+          <p>A quiet breakfast is laid before the ceremony begins.</p>
+        </li>
+        <li class="moment">
+          <p class="moment-time">10:10</p>
           <h2>Arrival</h2>
-          <p>Guests are received at Centurion’s Banquet. A cool drink, a quiet seat, and the first greetings of the day.</p>
+          <p>Gayashan and Vishmi arrive. The washing of the feet and a song of welcome follow.</p>
         </li>
         <li class="moment">
-          <p class="moment-time">10:25</p>
+          <p class="moment-time">10:35 until 11:10</p>
           <h2>Poruwa</h2>
-          <p>Gayashan and Vishmi meet on the poruwa. We ask only for your presence, and a little stillness, as two families become one.</p>
+          <p>They meet on the poruwa. Betel is offered, rings are exchanged, and the garland and sari are given, with gifts for their parents and the jayamangala gatha. They step down at 11:10.</p>
         </li>
         <li class="moment">
-          <p class="moment-time">11:15</p>
-          <h2>Photographs</h2>
-          <p>A few frames with family, and then with friends. If you are called, come smiling — it will not take long.</p>
+          <p class="moment-time">11:20</p>
+          <h2>Lighting the lamp</h2>
+          <p>The oil lamp is lit, and the morning turns toward celebration.</p>
         </li>
         <li class="moment">
-          <p class="moment-time">12:30 in the afternoon</p>
-          <h2>Lunch</h2>
-          <p>Lunch is served from 12:30. Find your table, take your time, and let the meal gather the room together.</p>
-        </li>
-        <li class="moment">
-          <p class="moment-time">2:00</p>
+          <p class="moment-time">11:25</p>
           <h2>Cake</h2>
-          <p>A pause for sweetness. The cake is cut, shared, and offered as a small thanks for every person in the room.</p>
+          <p>The cake is cut and shared.</p>
         </li>
         <li class="moment">
-          <p class="moment-time">2:30 until 3:30</p>
+          <p class="moment-time">11:30</p>
+          <h2>Champagne</h2>
+          <p>The champagne is opened, and poured for the room.</p>
+        </li>
+        <li class="moment">
+          <p class="moment-time">11:40</p>
+          <h2>Welcome speech</h2>
+          <p>A few words of welcome. A welcome drink follows, and a small toast at noon.</p>
+        </li>
+        <li class="moment">
+          <p class="moment-time">12:10 until 12:30</p>
+          <h2>Photographs</h2>
+          <p>A few frames, and a short rest before lunch.</p>
+        </li>
+        <li class="moment">
+          <p class="moment-time">12:30</p>
+          <h2>Lunch</h2>
+          <p>Lunch is served from 12:30. Take your time, and let the meal gather the room together.</p>
+        </li>
+        <li class="moment">
+          <p class="moment-time">1:00</p>
+          <h2>Photographs</h2>
+          <p>Another quiet sitting for photographs.</p>
+        </li>
+        <li class="moment">
+          <p class="moment-time">1:30</p>
           <h2>Dance</h2>
-          <p>The first dance, and then the floor belongs to everyone. The day comes to a close at half past three.</p>
+          <p>The floor opens, and the afternoon begins in earnest.</p>
+        </li>
+        <li class="moment">
+          <p class="moment-time">2:00 until 3:00</p>
+          <h2>With our guests</h2>
+          <p>Time to talk, and to be photographed together. If you are called, come smiling.</p>
+        </li>
+        <li class="moment">
+          <p class="moment-time">3:00 until 3:15</p>
+          <h2>A small thanks</h2>
+          <p>Thank-you cards and a plant are offered, a last small gift from the day.</p>
+        </li>
+        <li class="moment">
+          <p class="moment-time">3:15 until 3:40</p>
+          <h2>A blessing</h2>
+          <p>The gathering closes with a blessing, before we take our leave.</p>
+        </li>
+        <li class="moment">
+          <p class="moment-time">3:45</p>
+          <h2>Departure</h2>
+          <p>Gayashan and Vishmi depart. Thank you for standing with us until the end of the day.</p>
         </li>
       </ol>
 
       <nav class="site-nav" aria-label="More from the wedding">
-        <a href="guestList.html">Find your table</a>
+        <a href="guestList.html" style="display: none">Find your table</a>
         <a href="wishes.html">Leave a blessing</a>
         <a href="thanks.html">With thanks</a>
       </nav>

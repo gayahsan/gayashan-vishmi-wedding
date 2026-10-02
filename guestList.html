@@ -19,7 +19,7 @@
         --ivory: #f7f3ec;
         --paper: #fffdf9;
         --ink: #292b27;
-        --muted: #76766e;
+        --muted: #65655e;
         --sage: #66745f;
         --sage-dark: #4d5948;
         --blush: #d8b7ad;
@@ -74,6 +74,9 @@
       }
 
       .monogram {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
         color: var(--ink);
         font-family: var(--script);
         font-size: 1.7rem;
@@ -83,7 +86,7 @@
 
       .topbar-meta {
         color: var(--muted);
-        font-size: 0.65rem;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.18em;
         text-transform: uppercase;
@@ -103,7 +106,7 @@
         gap: 0.8rem;
         margin: 0 0 1.3rem;
         color: var(--sage-dark);
-        font-size: 0.67rem;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.25em;
         text-transform: uppercase;
@@ -213,7 +216,7 @@
 
       .stat span {
         color: var(--muted);
-        font-size: 0.55rem;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.16em;
         text-transform: uppercase;
@@ -281,7 +284,7 @@
       .table-caption {
         display: block;
         margin-top: 0.45rem;
-        font-size: 0.58rem;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.2em;
         text-transform: uppercase;
@@ -322,7 +325,7 @@
 
       .guest-note {
         color: var(--muted);
-        font-size: 0.67rem;
+        font-size: 0.75rem;
         text-align: right;
       }
 
@@ -347,7 +350,7 @@
 
       th {
         color: var(--muted);
-        font-size: 0.58rem;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.18em;
         text-transform: uppercase;
@@ -408,7 +411,7 @@
         padding-top: 1.2rem;
         border-top: 1px solid var(--line);
         color: var(--muted);
-        font-size: 0.7rem;
+        font-size: 0.78rem;
       }
 
       .footer-actions {
@@ -424,15 +427,18 @@
       }
 
       .site-nav a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
         color: var(--muted);
-        font-size: 0.78rem;
-        text-decoration: none;
-        border-bottom: 1px solid rgba(41, 43, 39, 0.16);
-        padding-bottom: 0.12rem;
+        font-size: 0.86rem;
+        text-decoration: underline;
+        text-decoration-color: rgba(41, 43, 39, 0.22);
+        text-underline-offset: 0.35em;
       }
 
       .button {
-        min-height: 40px;
+        min-height: 44px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -503,7 +509,7 @@
       @media (max-width: 760px) {
         .shell {
           width: 100%;
-          padding: calc(0.7rem + env(safe-area-inset-top)) 1rem calc(2.4rem + env(safe-area-inset-bottom));
+          padding: calc(0.7rem + env(safe-area-inset-top)) 1rem calc(5.2rem + env(safe-area-inset-bottom));
         }
 
         .topbar-meta {
@@ -511,9 +517,9 @@
         }
 
         .topbar .button {
-          min-height: 36px;
+          min-height: 44px;
           padding: 0.42rem 0.8rem;
-          font-size: 0.7rem;
+          font-size: 0.75rem;
         }
 
         .hero {
@@ -591,7 +597,7 @@
         }
 
         .guest-list li {
-          min-height: 38px;
+          min-height: 44px;
           padding: 0.45rem 0;
         }
 
@@ -684,6 +690,23 @@
         *::before,
         *::after {
           transition: none !important;
+        }
+      }
+      a:focus-visible,
+      button:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible,
+      select:focus-visible {
+        outline: 2px solid var(--sage-dark);
+        outline-offset: 3px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          scroll-behavior: auto !important;
+          transition: none !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
         }
       }
     </style>

@@ -19,7 +19,7 @@
         --ivory: #f7f3ec;
         --paper: #fffdf9;
         --ink: #292b27;
-        --muted: #76766e;
+        --muted: #65655e;
         --sage: #66745f;
         --sage-dark: #4d5948;
         --blush: #d8b7ad;
@@ -123,7 +123,7 @@
         gap: 0.8rem;
         margin: 0 0 1.5rem;
         color: var(--sage-dark);
-        font-size: 0.68rem;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.28em;
         text-transform: uppercase;
@@ -193,12 +193,15 @@
       }
 
       .quiet-links a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
         color: var(--muted);
-        font-size: 0.78rem;
+        font-size: 0.86rem;
         letter-spacing: 0.02em;
-        text-decoration: none;
-        border-bottom: 1px solid rgba(41, 43, 39, 0.16);
-        padding-bottom: 0.12rem;
+        text-decoration: underline;
+        text-decoration-color: rgba(41, 43, 39, 0.22);
+        text-underline-offset: 0.35em;
       }
 
       .quiet-links a:hover {
@@ -261,9 +264,9 @@
 
       .date-mark .side {
         color: var(--muted);
-        font-size: 0.68rem;
+        font-size: 0.75rem;
         font-weight: 600;
-        letter-spacing: 0.2em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
       }
 
@@ -293,9 +296,9 @@
       .event-label {
         padding-top: 0.2rem;
         color: var(--sage-dark);
-        font-size: 0.64rem;
+        font-size: 0.75rem;
         font-weight: 600;
-        letter-spacing: 0.2em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
       }
 
@@ -308,7 +311,7 @@
       .event-value small {
         display: block;
         color: var(--muted);
-        font: 300 0.82rem/1.55 var(--sans);
+        font: 400 0.88rem/1.55 var(--sans);
       }
 
       .countdown {
@@ -319,9 +322,9 @@
       .countdown-title {
         margin: 0 0 0.75rem;
         color: var(--muted);
-        font-size: 0.58rem;
+        font-size: 0.75rem;
         font-weight: 600;
-        letter-spacing: 0.22em;
+        letter-spacing: 0.2em;
         text-transform: uppercase;
       }
 
@@ -358,21 +361,23 @@
 
       .count-label {
         color: var(--muted);
-        font-size: 0.5rem;
+        font-size: 0.75rem;
         font-weight: 600;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
       }
 
       .rsvp {
         margin: 1.5rem 0 0;
         color: var(--muted);
-        font-size: 0.75rem;
-        line-height: 1.7;
+        font-size: 0.85rem;
+        line-height: 1.9;
         text-align: center;
       }
 
       .rsvp a {
+        display: inline-block;
+        padding: 0.3rem 0;
         color: var(--ink);
         text-decoration-color: rgba(41, 43, 39, 0.28);
         text-underline-offset: 3px;
@@ -535,17 +540,23 @@
         }
 
         .count-grid {
-          gap: 0.3rem;
+          gap: 0.4rem;
         }
 
         .count-ring {
-          width: 52px;
-          height: 52px;
+          width: 56px;
+          height: 56px;
         }
 
         .count-value {
           font-size: 0.95rem;
         }
+      }
+
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--sage-dark);
+        outline-offset: 3px;
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -594,7 +605,7 @@
               The venue
             </a>
             <a class="button secondary" href="preshoot.html">Our photographs</a>
-            <a class="button" href="guestList.html">Find your table</a>
+            <a class="button" href="guestList.html" style="display: none">Find your table</a>
           </div>
 
           <nav class="quiet-links" aria-label="More from the wedding">
@@ -616,7 +627,7 @@
               <div class="event-label">When</div>
               <div class="event-value">
                 Monday, October 05, 2026
-                <small>Poruwa at 10:25 in the morning · Lunch from 12:30 · The day ends at 3:30 in the afternoon</small>
+                <small>Poruwa at 10:35 in the morning · Lunch from 12:30 · Departure at 3:45 in the afternoon</small>
               </div>
             </div>
             <div class="event-row">
@@ -637,7 +648,7 @@
 
           <div class="countdown">
             <p class="countdown-title">Until we meet</p>
-            <div class="count-grid" id="countdown" aria-live="polite">
+            <div class="count-grid" id="countdown" role="timer">
               <div class="count-item">
                 <div class="count-ring"><span class="count-value" data-part="days">00</span></div>
                 <span class="count-label">Days</span>
@@ -681,7 +692,7 @@
     </button>
 
     <script>
-      var EVENT_START_UTC_MS = Date.UTC(2026, 9, 5, 4, 55, 0);
+      var EVENT_START_UTC_MS = Date.UTC(2026, 9, 5, 5, 5, 0);
 
       function pad2(value) {
         return String(value).padStart(2, "0");

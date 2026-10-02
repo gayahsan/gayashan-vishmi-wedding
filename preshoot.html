@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#f5f0e8" />
-    <meta name="description" content="Photographs and films from the days before Gayashan and Vishmi's wedding." />
+    <meta name="description" content="Photographs from the days before Gayashan and Vishmi's wedding." />
     <title>Gayashan &amp; Vishmi — Our photographs</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,7 +19,7 @@
         --ivory: #f7f3ec;
         --paper: #fffdf9;
         --ink: #292b27;
-        --muted: #76766e;
+        --muted: #65655e;
         --sage: #66745f;
         --sage-dark: #4d5948;
         --blush: #d8b7ad;
@@ -73,6 +73,9 @@
       }
 
       .monogram {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
         color: var(--ink);
         font-family: var(--script);
         font-size: 1.7rem;
@@ -82,14 +85,14 @@
 
       .topbar-meta {
         color: var(--muted);
-        font-size: 0.65rem;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.18em;
         text-transform: uppercase;
       }
 
       .button {
-        min-height: 40px;
+        min-height: 44px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -130,7 +133,7 @@
         gap: 0.8rem;
         margin: 0 0 1.3rem;
         color: var(--sage-dark);
-        font-size: 0.67rem;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.25em;
         text-transform: uppercase;
@@ -190,13 +193,13 @@
       }
 
       .filter {
-        min-height: 36px;
+        min-height: 44px;
         padding: 0.45rem 0.9rem;
         color: var(--muted);
         background: transparent;
         border: 1px solid transparent;
         border-radius: 999px;
-        font-size: 0.72rem;
+        font-size: 0.75rem;
         font-weight: 500;
         letter-spacing: 0.06em;
         text-transform: uppercase;
@@ -223,7 +226,7 @@
 
       .count {
         color: var(--muted);
-        font-size: 0.72rem;
+        font-size: 0.75rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
@@ -269,9 +272,9 @@
       }
 
       .slideshow-btn {
-        min-height: 36px;
+        min-height: 44px;
         padding: 0.5rem 0.95rem;
-        font-size: 0.72rem;
+        font-size: 0.75rem;
       }
 
       .gallery {
@@ -357,7 +360,7 @@
         border: 1px solid rgba(255, 255, 255, 0.7);
         border-radius: 999px;
         backdrop-filter: blur(10px);
-        font-size: 0.62rem;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.14em;
         text-transform: uppercase;
@@ -377,7 +380,7 @@
         padding-top: 1.2rem;
         border-top: 1px solid var(--line);
         color: var(--muted);
-        font-size: 0.7rem;
+        font-size: 0.78rem;
       }
 
       .footer-actions {
@@ -393,11 +396,14 @@
       }
 
       .site-nav a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
         color: var(--muted);
-        font-size: 0.78rem;
-        text-decoration: none;
-        border-bottom: 1px solid rgba(41, 43, 39, 0.16);
-        padding-bottom: 0.12rem;
+        font-size: 0.86rem;
+        text-decoration: underline;
+        text-decoration-color: rgba(41, 43, 39, 0.22);
+        text-underline-offset: 0.35em;
       }
 
       .music {
@@ -505,10 +511,10 @@
 
       .lightbox-chip {
         width: auto;
-        min-height: 36px;
+        min-height: 44px;
         padding: 0.4rem 0.85rem;
         border-radius: 999px;
-        font-size: 0.68rem;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.08em;
         text-transform: uppercase;
@@ -615,7 +621,7 @@
       @media (max-width: 820px) {
         .shell {
           width: 100%;
-          padding: calc(0.7rem + env(safe-area-inset-top)) 1rem calc(2.4rem + env(safe-area-inset-bottom));
+          padding: calc(0.7rem + env(safe-area-inset-top)) 1rem calc(5.2rem + env(safe-area-inset-bottom));
         }
 
         .topbar-meta {
@@ -702,6 +708,23 @@
           transform: none;
         }
       }
+      a:focus-visible,
+      button:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible,
+      select:focus-visible {
+        outline: 2px solid var(--sage-dark);
+        outline-offset: 3px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          scroll-behavior: auto !important;
+          transition: none !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+        }
+      }
     </style>
   </head>
   <body>
@@ -729,16 +752,16 @@
         </div>
         <p class="hero-copy">
           <strong>Quiet frames, taken while the day was still approaching.</strong>
-          Open any photograph or film. New pictures appear here as they are ready —
+          Open any photograph. New pictures appear here as they are ready —
           or sit back, and let them unfold on their own.
         </p>
       </header>
 
       <div class="toolbar">
-        <div class="filters" role="group" aria-label="Filter media">
+        <div class="filters" id="filters" role="group" aria-label="Filter media" style="display: none">
           <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
           <button class="filter" type="button" data-filter="image" aria-pressed="false">Photographs</button>
-          <button class="filter" type="button" data-filter="video" aria-pressed="false">Films</button>
+          <button class="filter" type="button" data-filter="video" aria-pressed="false" style="display: none">Films</button>
         </div>
         <div class="toolbar-actions">
           <p class="count" id="mediaCount" aria-live="polite"></p>
@@ -981,21 +1004,25 @@
           return;
         }
 
+        var videoCount = MEDIA.filter(function (item) {
+          return item.type === "video";
+        }).length;
+        var filmsBtn = document.querySelector('[data-filter="video"]');
+        if (filmsBtn) filmsBtn.style.display = videoCount ? "" : "none";
+        var filtersBox = document.getElementById("filters");
+        if (filtersBox) filtersBox.style.display = videoCount ? "" : "none";
+
         mediaCount.innerHTML =
-          "<strong>" +
-          visibleItems.length +
-          "</strong> frames · " +
-          photos +
-          " photographs · " +
-          videos +
-          " films" +
+          (videoCount
+            ? "<strong>" + visibleItems.length + "</strong> frames · " + photos + " photographs · " + videos + " films"
+            : "<strong>" + photos + "</strong> photographs") +
           (lastSyncedLabel ? " · " + lastSyncedLabel : "");
 
         if (!visibleItems.length) {
           gallery.innerHTML = "";
           setStatus(
             "Nothing here just now.",
-            "Try All, Photographs, or Films to see the rest of the album.",
+            "Try All to see the rest of the album.",
             true
           );
           return;
@@ -1008,7 +1035,7 @@
             var badge =
               item.type === "video"
                 ? '<span class="tile-badge">' + playIcon() + "Film</span>"
-                : '<span class="tile-badge">Photograph</span>';
+                : "";
 
             var kind = item.type === "video" ? "film" : "photograph";
 
@@ -1042,9 +1069,9 @@
           lightbox.classList.add("open");
         });
 
-        var kind = item.type === "video" ? "Film" : "Photograph";
+        var kind = item.type === "video" ? "Film" : "";
         lightboxLabel.textContent =
-          kind + " · " + (activeIndex + 1) + " / " + visibleItems.length;
+          (kind ? kind + " · " : "") + (activeIndex + 1) + " / " + visibleItems.length;
         lightboxDrive.href = driveUrl(item.id);
 
         if (item.type === "image") {
@@ -1143,7 +1170,7 @@
 
       function applyMedia(files, updatedAt, silent) {
         var next = normalizeFiles(files);
-        lastSyncedLabel = formatSyncLabel(updatedAt);
+        lastSyncedLabel = "";
         if (silent && sameMedia(next)) return;
         MEDIA = next;
         if (!MEDIA.length) {
@@ -1246,7 +1273,7 @@
 
       function loadMedia(silent) {
         if (!silent) {
-          setStatus("A moment, please.", "Gathering the latest photographs and films.", true);
+          setStatus("A moment, please.", "Gathering the latest photographs.", true);
           gallery.innerHTML = "";
           mediaCount.innerHTML = "A moment…";
           slideshowBtn.disabled = true;
