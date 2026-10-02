@@ -540,6 +540,9 @@
       .lightbox-frame img,
       .lightbox-frame iframe {
         display: block;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
         width: min(100%, 1400px);
         height: min(100%, calc(100svh - 9.5rem));
         max-height: calc(100svh - 9.5rem);
@@ -592,6 +595,25 @@
 
       .lightbox-bottom a {
         color: rgba(255, 253, 249, 0.88);
+      }
+
+      .lightbox-hint {
+        color: rgba(255, 253, 249, 0.6);
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .lightbox.holding .lightbox-top,
+      .lightbox.holding .lightbox-bottom,
+      .lightbox.holding .lightbox-nav {
+        opacity: 0;
+      }
+
+      .lightbox-top,
+      .lightbox-bottom,
+      .lightbox-nav {
+        transition: opacity 200ms ease;
       }
 
       .lightbox-nav svg,
@@ -856,7 +878,8 @@
       </div>
       <div class="lightbox-bottom">
         <span id="lightboxLabel"></span>
-        <a id="lightboxDrive" href="#" target="_blank" rel="noreferrer">Open the original</a>
+        <span class="lightbox-hint">Hold to pause</span>
+        <a id="lightboxDrive" href="#" target="_blank" rel="noreferrer" hidden>Open the original</a>
       </div>
     </div>
 
@@ -892,8 +915,12 @@
       var progressTimer = null;
       var slideStartedAt = 0;
       var slideDuration = 0;
-      var PHOTO_MS = 5000;
-      var VIDEO_MS = 18000;
+      var PHOTO_MS = 25000;
+      var VIDEO_MS = 25000;
+      var HOLD_MS = 220;
+      var holdTimer = null;
+      var holding = false;
+      var holdElapsed = 0;
       var lastSyncedLabel = "";
 
       function thumbUrl(id) {
@@ -980,23 +1007,48 @@
         );
       }
 
-      function scheduleAdvance(duration) {
+      function scheduleAdvance(duration, elapsedAlready) {
         clearSlideTimers();
         slideDuration = duration;
-        slideStartedAt = Date.now();
-        setProgress(0);
+        var elapsed = Math.max(0, Math.min(duration, elapsedAlready || 0));
+        slideStartedAt = Date.now() - elapsed;
+        setProgress((elapsed / slideDuration) * 100);
 
         if (!slideshowPlaying) return;
 
         progressTimer = setInterval(function () {
-          var elapsed = Date.now() - slideStartedAt;
-          setProgress((elapsed / slideDuration) * 100);
+          setProgress(((Date.now() - slideStartedAt) / slideDuration) * 100);
         }, 80);
 
         slideTimer = setTimeout(function () {
           setProgress(100);
           stepLightbox(1, true);
-        }, slideDuration);
+        }, slideDuration - elapsed);
+      }
+
+      function slideMs(item) {
+        return item && item.type === "video" ? VIDEO_MS : PHOTO_MS;
+      }
+
+      function beginHold() {
+        if (holding || !slideshowMode || !slideshowPlaying) return;
+        holding = true;
+        holdElapsed = Math.min(slideDuration, Date.now() - slideStartedAt);
+        clearSlideTimers();
+        lightbox.classList.add("holding");
+      }
+
+      function endHold() {
+        if (holdTimer) {
+          clearTimeout(holdTimer);
+          holdTimer = null;
+        }
+        if (!holding) return;
+        holding = false;
+        lightbox.classList.remove("holding");
+        if (slideshowMode && slideshowPlaying) {
+          scheduleAdvance(slideDuration || slideMs(visibleItems[activeIndex]), holdElapsed);
+        }
       }
 
       function render() {
@@ -1103,7 +1155,7 @@
         updatePlayButton();
 
         if (slideshowMode && slideshowPlaying) {
-          scheduleAdvance(item.type === "video" ? VIDEO_MS : PHOTO_MS);
+          scheduleAdvance(slideMs(item));
         } else {
           clearSlideTimers();
           setProgress(0);
@@ -1131,6 +1183,12 @@
       function closeLightbox() {
         slideshowMode = false;
         slideshowPlaying = false;
+        holding = false;
+        if (holdTimer) {
+          clearTimeout(holdTimer);
+          holdTimer = null;
+        }
+        lightbox.classList.remove("holding");
         clearSlideTimers();
         setProgress(0);
         updatePlayButton();
@@ -1160,8 +1218,7 @@
         updatePlayButton();
 
         if (slideshowPlaying) {
-          var item = visibleItems[activeIndex];
-          scheduleAdvance(item.type === "video" ? VIDEO_MS : PHOTO_MS);
+          scheduleAdvance(slideMs(visibleItems[activeIndex]));
         } else {
           clearSlideTimers();
         }
@@ -1350,6 +1407,19 @@
         stepLightbox(1);
       });
       lightboxPlay.addEventListener("click", toggleSlideshowPlay);
+
+      var lightboxStage = document.querySelector(".lightbox-stage");
+      lightboxStage.addEventListener("pointerdown", function (event) {
+        if (event.target.closest("button, a")) return;
+        if (holdTimer) clearTimeout(holdTimer);
+        holdTimer = setTimeout(beginHold, HOLD_MS);
+      });
+      ["pointerup", "pointercancel", "pointerleave"].forEach(function (type) {
+        lightboxStage.addEventListener(type, endHold);
+      });
+      lightboxStage.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+      });
 
       document.addEventListener("keydown", function (event) {
         if (!lightbox.classList.contains("open")) return;
