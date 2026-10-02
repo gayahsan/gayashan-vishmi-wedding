@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3ec" />
+    <title>Gayashan &amp; Vishmi — Gallery table card</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --ivory: #f7f3ec;
+        --paper: #fffdf9;
+        --ink: #292b27;
+        --muted: #65655e;
+        --sage: #66745f;
+        --gold: #ae8b57;
+        --line: rgba(41, 43, 39, 0.14);
+        --serif: "Playfair Display", Georgia, serif;
+        --sans: "DM Sans", system-ui, sans-serif;
+        --script: "Great Vibes", cursive;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        padding: 2rem;
+        color: var(--ink);
+        background: #e7e4dd;
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .card {
+        position: relative;
+        width: 105mm;
+        height: 148mm;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 9mm 10mm 11mm;
+        background:
+          radial-gradient(circle at 2% 2%, rgba(216, 183, 173, 0.24), transparent 39mm),
+          radial-gradient(circle at 100% 100%, rgba(102, 116, 95, 0.13), transparent 43mm),
+          var(--ivory);
+        border: 1px solid rgba(41, 43, 39, 0.1);
+        text-align: center;
+      }
+
+      .card::before,
+      .card::after {
+        content: "";
+        position: absolute;
+        width: 25mm;
+        height: 25mm;
+        border-color: rgba(174, 139, 87, 0.56);
+        pointer-events: none;
+      }
+
+      .card::before {
+        top: 5mm;
+        left: 5mm;
+        border-top: 0.35mm solid;
+        border-left: 0.35mm solid;
+      }
+
+      .card::after {
+        right: 5mm;
+        bottom: 5mm;
+        border-right: 0.35mm solid;
+        border-bottom: 0.35mm solid;
+      }
+
+      .monogram {
+        margin: 0;
+        color: var(--ink);
+        font-family: var(--script);
+        font-size: 15mm;
+        font-weight: 400;
+        line-height: 0.88;
+      }
+
+      .date {
+        display: flex;
+        align-items: center;
+        gap: 3mm;
+        margin: 2mm 0 0;
+        color: var(--sage);
+        font-size: 2.5mm;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .date::before,
+      .date::after {
+        content: "";
+        width: 8mm;
+        height: 0.3mm;
+        background: var(--gold);
+      }
+
+      h1 {
+        max-width: 12ch;
+        margin: 4mm 0 2mm;
+        font-family: var(--serif);
+        font-size: 8.8mm;
+        font-weight: 400;
+        line-height: 0.98;
+        letter-spacing: -0.035em;
+      }
+
+      .intro {
+        max-width: 34ch;
+        margin: 0;
+        color: var(--muted);
+        font-family: var(--serif);
+        font-size: 3.3mm;
+        font-style: italic;
+        line-height: 1.45;
+      }
+
+      .qr-frame {
+        position: relative;
+        width: 57mm;
+        height: 57mm;
+        margin-top: 4mm;
+        padding: 4mm;
+        background: var(--paper);
+        border: 0.35mm solid var(--line);
+        border-radius: 5mm;
+      }
+
+      .qr-frame img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .scan {
+        margin: 3mm 0 0;
+        color: var(--sage);
+        font-size: 3mm;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .hint {
+        margin: 1.5mm 0 0;
+        color: var(--muted);
+        font-size: 2.5mm;
+        line-height: 1.45;
+      }
+
+      .url {
+        margin: 2mm 0 0;
+        color: var(--muted);
+        font-size: 2.1mm;
+        letter-spacing: 0.03em;
+      }
+
+      .print {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        min-height: 44px;
+        padding: 0.75rem 1.15rem;
+        color: white;
+        background: var(--sage);
+        border: 0;
+        border-radius: 999px;
+        font: 600 0.85rem/1 var(--sans);
+        cursor: pointer;
+      }
+
+      @page {
+        size: A6 portrait;
+        margin: 0;
+      }
+
+      @media print {
+        html,
+        body {
+          width: 105mm;
+          height: 148mm;
+        }
+
+        body {
+          display: block;
+          padding: 0;
+          background: white;
+        }
+
+        .card {
+          border: 0;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        .print {
+          display: none;
+        }
+      }
+
+      @media (max-width: 460px) {
+        body {
+          padding: 0;
+          background: var(--ivory);
+        }
+
+        .card {
+          width: 100%;
+          min-height: 100svh;
+          height: auto;
+          border: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <p class="monogram">G &amp; V</p>
+      <p class="date">05 October 2026</p>
+
+      <h1>Our photographs</h1>
+      <p class="intro">A little window into the days before our forever.</p>
+
+      <div class="qr-frame">
+        <img
+          src="gallery-qr.svg"
+          alt="QR code opening Gayashan and Vishmi's wedding photographs"
+          width="900"
+          height="900"
+        />
+      </div>
+
+      <p class="scan">Scan to view the gallery</p>
+      <p class="hint">Tap “Watch together” for the slideshow.<br />Press and hold a photograph to pause.</p>
+      <p class="url">gayahsan.github.io/gayashan-vishmi-wedding</p>
+    </main>
+
+    <button class="print" type="button" onclick="window.print()">Print this card</button>
+  </body>
+</html>
