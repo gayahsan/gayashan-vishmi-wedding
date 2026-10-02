@@ -9,7 +9,7 @@ A simple wedding website for **Gayashan & Vishmi**, with an invitation card and 
 | | |
 | --- | --- |
 | **Date** | Monday, 05 October 2026 |
-| **Time** | Poruwa 10:35 AM · Departure 3:45 PM |
+| **Time** | Poruwa 10:25 AM · Departure 3:45 PM |
 | **Lunch** | From 12:30 PM |
 | **Venue** | Centurion's Banquet, Negombo Road, Divulapitiya |
 
