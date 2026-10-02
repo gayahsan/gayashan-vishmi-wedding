@@ -547,6 +547,8 @@
       .lightbox-stage {
         position: relative;
         min-height: 0;
+        overflow: hidden;
+        background: #0f100e;
       }
 
       .lightbox-frame img,
@@ -596,12 +598,16 @@
       }
 
       .lightbox-bottom {
+        position: relative;
+        z-index: 3;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
+        margin-top: -2px;
         padding: 0.85rem 1.1rem calc(1rem + env(safe-area-inset-bottom));
         color: rgba(255, 253, 249, 0.88);
+        background: #0f100e;
         font-size: 0.85rem;
       }
 
