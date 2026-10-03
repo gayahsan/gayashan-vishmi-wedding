@@ -585,7 +585,7 @@
 
       .lightbox-nav {
         position: absolute;
-        top: 50%;
+        top: var(--media-center, 50%);
         z-index: 2;
         transform: translateY(-50%);
       }
@@ -736,6 +736,17 @@
         .lightbox-frame iframe {
           width: 100%;
           max-height: calc(100svh - 10rem);
+        }
+
+        .lightbox-frame {
+          align-items: start;
+          padding-top: clamp(0.75rem, 2.5vh, 1.5rem);
+        }
+
+        .lightbox-frame img {
+          width: auto;
+          max-width: 100%;
+          height: auto;
         }
 
         .lightbox-nav {
@@ -1146,6 +1157,17 @@
           .join("");
       }
 
+      function updateMediaCenter() {
+        var media = lightboxFrame.querySelector("img, iframe");
+        var stage = document.querySelector(".lightbox-stage");
+        if (!media || !stage) return;
+
+        var mediaRect = media.getBoundingClientRect();
+        var stageRect = stage.getBoundingClientRect();
+        var center = mediaRect.top - stageRect.top + mediaRect.height / 2;
+        stage.style.setProperty("--media-center", center + "px");
+      }
+
       function showSlide(index, keepSlideshow) {
         if (!visibleItems.length) return;
 
@@ -1173,6 +1195,16 @@
             '" title="' +
             kind +
             '" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>';
+        }
+
+        var activeMedia = lightboxFrame.querySelector("img, iframe");
+        if (activeMedia) {
+          activeMedia.addEventListener("load", updateMediaCenter, { once: true });
+          if (activeMedia.complete) requestAnimationFrame(updateMediaCenter);
+          requestAnimationFrame(function () {
+            requestAnimationFrame(updateMediaCenter);
+          });
+          setTimeout(updateMediaCenter, 520);
         }
 
         document.body.style.overflow = "hidden";
@@ -1373,19 +1405,27 @@
           slideshowBtn.disabled = true;
         }
 
-        return loadFromAppsScript()
-          .catch(function () {
+        return Promise.allSettled([
+          loadFromAppsScript().catch(function () {
             return loadFromDriveApi();
-          })
-          .catch(function () {
+          }).catch(function () {
             return loadFromDriveFolder();
-          })
-          .catch(function () {
-            return loadFromMediaJson();
-          })
-          .then(function (payload) {
-            applyMedia(payload.files || [], payload.updatedAt, silent);
-          })
+          }),
+          loadFromMediaJson(),
+        ]).then(function (results) {
+          var lists = results
+            .filter(function (result) {
+              return result.status === "fulfilled" && result.value && result.value.files;
+            })
+            .map(function (result) {
+              return result.value;
+            })
+            .sort(function (a, b) {
+              return (b.files || []).length - (a.files || []).length;
+            });
+          if (!lists.length) throw new Error("album unavailable");
+          applyMedia(lists[0].files || [], lists[0].updatedAt, silent);
+        })
           .catch(function () {
             if (silent && MEDIA.length) return;
             MEDIA = [];
@@ -1453,6 +1493,12 @@
         if (event.key === " " || event.key === "k") {
           event.preventDefault();
           toggleSlideshowPlay();
+        }
+      });
+
+      window.addEventListener("resize", function () {
+        if (lightbox.classList.contains("open")) {
+          requestAnimationFrame(updateMediaCenter);
         }
       });
 
