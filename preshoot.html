@@ -1006,7 +1006,15 @@
               mime: mime,
             };
           })
-          .filter(Boolean);
+          .filter(Boolean)
+          .sort(function (a, b) {
+            function numberIn(name) {
+              var match = String(name || "").match(/(\d+)(?!.*\d)/);
+              return match ? Number(match[1]) : Number.MAX_SAFE_INTEGER;
+            }
+            var diff = numberIn(a.name) - numberIn(b.name);
+            return diff || String(a.name).localeCompare(String(b.name));
+          });
       }
 
       function setStatus(title, copy, visible) {

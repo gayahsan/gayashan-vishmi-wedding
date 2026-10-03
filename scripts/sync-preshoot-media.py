@@ -110,7 +110,12 @@ def main() -> None:
             sys.exit(1)
         print("Drive folder has no public photographs or films yet.", file=sys.stderr)
 
-    files.reverse()
+    files.sort(key=lambda item: (
+        int(re.search(r"(\d+)(?!.*\d)", item["name"]).group(1))
+        if re.search(r"(\d+)(?!.*\d)", item["name"])
+        else 10**12,
+        item["name"],
+    ))
     payload = {
         "folderId": FOLDER_ID,
         "folderUrl": FOLDER_URL,
