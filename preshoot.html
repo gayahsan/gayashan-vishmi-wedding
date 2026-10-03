@@ -1364,20 +1364,21 @@
       function parseDriveListing(text) {
         var files = [];
         var seen = {};
-        var pattern = /type\/(image|video)\/([a-zA-Z0-9.+-]+)\)[\s\S]{0,240}?https:\/\/drive\.google\.com\/file\/d\/([A-Za-z0-9_-]+)/g;
+        var pattern = /type\/(image|video)\/([a-zA-Z0-9.+-]+)\)\s*([^\]\n]+?)\s*\]\(https:\/\/drive\.google\.com\/file\/d\/([A-Za-z0-9_-]+)/g;
         var match;
         while ((match = pattern.exec(text))) {
-          var id = match[3];
+          var id = match[4];
           if (seen[id]) continue;
           seen[id] = true;
+          var name = String(match[3] || "").replace(/\s+/g, " ").trim();
+          if (!name || /^https?:/i.test(name)) name = id;
           files.push({
             id: id,
-            name: id,
+            name: name,
             type: match[1],
             mime: match[1] + "/" + match[2],
           });
         }
-        files.reverse();
         return files;
       }
 
